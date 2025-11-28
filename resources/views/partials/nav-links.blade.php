@@ -1,6 +1,6 @@
 @php
     $navLinks = [
-        ['url' => '#home', 'label' => 'Home'],
+        ['url' => '/home', 'label' => 'Home'],
         ['url' => '/about', 'label' => 'About'],
         ['url' => '#activity', 'label' => 'Activity'],
         ['url' => '#competition', 'label' => 'Competition'],
