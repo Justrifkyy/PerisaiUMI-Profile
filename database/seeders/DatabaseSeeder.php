@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin PERISAI',
             'email' => 'admin@perisaiumi.ac.id',
             'password' => Hash::make('password'),
+            'role' => 'admin',
         ]);
 
         // Seed content tables
