@@ -36,22 +36,22 @@
 
                         {{-- Dropdown Menu --}}
                         <div
-                            class="absolute left-0 mt-1 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 -translate-y-2">
+                            class="absolute left-0 mt-1 w-44 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 -translate-y-2">
                             <div class="rounded-xl shadow-2xl p-2 mt-1">
                                 <a href="{{ route('about.sejarah') }}"
-                                    class="block px-4 py-1 text-sm rounded-md mb-1 {{ $currentRoute == 'about/sejarah' ? 'bg-yellow-400 text-black font-semibold' : 'bg-white text-black hover:bg-yellow-400 hover:text-black' }} transition duration-150">
+                                    class="block px-3 py-1 text-sm rounded-md mb-1 {{ $currentRoute == 'about/sejarah' ? 'bg-yellow-400 text-black font-semibold' : 'bg-white text-black hover:bg-yellow-400 hover:text-black' }} transition duration-150">
                                     Sejarah Perisai
                                 </a>
                                 <a href="{{ route('about.visi-misi') }}"
-                                    class="block px-4 py-1 text-sm rounded-md mb-1 {{ $currentRoute == 'about/visi-misi' ? 'bg-yellow-400 text-black font-semibold' : 'bg-white text-black hover:bg-yellow-400 hover:text-black' }} transition duration-150">
+                                    class="block px-3 py-1 text-sm rounded-md mb-1 {{ $currentRoute == 'about/visi-misi' ? 'bg-yellow-400 text-black font-semibold' : 'bg-white text-black hover:bg-yellow-400 hover:text-black' }} transition duration-150">
                                     Visi, Misi, dan Tujuan
                                 </a>
                                 <a href="{{ route('about.struktur') }}"
-                                    class="block px-4 py-1 text-sm rounded-md mb-1 {{ $currentRoute == 'about/struktur' ? 'bg-yellow-400 text-black font-semibold' : 'bg-white text-black hover:bg-yellow-400 hover:text-black' }} transition duration-150">
+                                    class="block px-3 py-1 text-sm rounded-md mb-1 {{ $currentRoute == 'about/struktur' ? 'bg-yellow-400 text-black font-semibold' : 'bg-white text-black hover:bg-yellow-400 hover:text-black' }} transition duration-150">
                                     Struktur Organisasi
                                 </a>
                                 <a href="{{ route('about.departemen') }}"
-                                    class="block px-4 py-1 text-sm rounded-md {{ $currentRoute == 'about/departemen' ? 'bg-yellow-400 text-black font-semibold' : 'bg-white text-black hover:bg-yellow-400 hover:text-black' }} transition duration-150">
+                                    class="block px-3 py-1 text-sm rounded-md {{ $currentRoute == 'about/departemen' ? 'bg-yellow-400 text-black font-semibold' : 'bg-white text-black hover:bg-yellow-400 hover:text-black' }} transition duration-150">
                                     Departemen Perisai
                                 </a>
                             </div>

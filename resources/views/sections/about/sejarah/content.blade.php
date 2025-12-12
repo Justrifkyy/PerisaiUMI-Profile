@@ -53,26 +53,31 @@
 <section class="bg-black py-16 md:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {{-- Left Column - Main Content --}}
+            {{-- Left Column - Main Content (2/3 width) --}}
             <div class="lg:col-span-2 space-y-8">
                 @foreach($contentData as $section)
                     @include('components.about.content-block', ['data' => $section])
                 @endforeach
             </div>
 
-            {{-- Right Column - Sidebar (Empty/Placeholder) --}}
-            <div class="hidden lg:block">
-                <div class="top-24 space-y-6">
-                    {{-- Placeholder untuk sidebar --}}
-                    <div class="bg-gray-400 h-64 w-64 rounded-lg flex items-center justify-center">
-                        <img src="" alt="" class="w-full h-full object-cover">
-                    </div>
-                    <div class="bg-gray-400 h-64 w-64 rounded-lg flex items-center justify-center">
-                        <img src="" alt="" class="w-full h-full object-cover">
-                    </div>
-                    <div class="bg-gray-400 h-64 w-64 rounded-lg flex items-center justify-center">
-                        <img src="" alt="" class="w-full h-full object-cover">
-                    </div>
+            {{-- Right Column - Sidebar Images (1/3 width) --}}
+            <div class="hidden lg:block space-y-6">
+                {{-- Image 1 --}}
+                <div class="bg-gray-400 rounded-lg overflow-hidden aspect-square">
+                    <img src="{{ asset('images/placeholder-1.jpg') }}" alt="PERISAI Activity 1"
+                        class="w-full h-full object-cover">
+                </div>
+
+                {{-- Image 2 --}}
+                <div class="bg-gray-400 rounded-lg overflow-hidden aspect-square">
+                    <img src="{{ asset('images/placeholder-2.jpg') }}" alt="PERISAI Activity 2"
+                        class="w-full h-full object-cover">
+                </div>
+
+                {{-- Image 3 --}}
+                <div class="bg-gray-400 rounded-lg overflow-hidden aspect-square">
+                    <img src="{{ asset('images/placeholder-3.jpg') }}" alt="PERISAI Activity 3"
+                        class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
