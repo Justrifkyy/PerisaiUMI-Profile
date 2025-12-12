@@ -1,10 +1,10 @@
 @php
     $statsData = [
-        'title' => 'Lebih dari <span class="text-yellow-400">150+</span> Inovator<br class="hidden sm:block"> Telah Bergabung',
+        'title' => 'Lebih dari <span class="text-yellow-400">150+</span> Inovator Telah Bergabung',
         'boxes' => [
             [
                 'label' => 'ALUMNI',
-                'period' => 'UKM PERISAI UMI 2014 - 2024',
+                'period' => 'UKM PERISAI UMI<br>2014 - 2024',
                 'number' => '100',
                 'bgClass' => 'bg-zinc-800',
                 'textClass' => 'text-gray-400',
@@ -16,7 +16,7 @@
             ],
             [
                 'label' => 'PENGURUS',
-                'period' => 'UKM PERISAI UMI 2025/2026',
+                'period' => 'UKM PERISAI UMI<br>2025/2026',
                 'number' => '58',
                 'bgClass' => 'bg-yellow-400',
                 'textClass' => 'text-gray-800',
@@ -34,7 +34,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Section Title -->
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+            <h2 class="text-4xl md:text-4xl lg:text-6xl font-semibold text-white">
                 {!! $statsData['title'] !!}
             </h2>
         </div>
