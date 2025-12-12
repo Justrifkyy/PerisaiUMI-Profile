@@ -21,11 +21,11 @@ Route::prefix('about')->name('about.')->group(function () {
     })->name('visi-misi');
 
     Route::get('/struktur', function () {
-        return view('pages.about.sejarah'); // TODO: Create struktur page
+        return view('pages.about.struktur'); // TODO: Create struktur page
     })->name('struktur');
 
     Route::get('/departemen', function () {
-        return view('about-departemen'); // TODO: Move to pages structure
+        return view('pages.about.departemen'); // TODO: Move to pages structure
     })->name('departemen');
 
 });
