@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
+@section('title', 'Departemen - PERISAI UMI')
+
 @section('content')
-    <div class="container">
-        <h1>Departemen</h1>
-    </div>
+    {{-- Hero Section --}}
+    @include('sections.about.departemen.hero')
+
+    {{-- Main Content --}}
+    @include('sections.about.departemen.content')
 @endsection
