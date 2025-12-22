@@ -25,7 +25,7 @@
                     {{-- About with Dropdown --}}
                     <div class="relative group">
                         <button
-                            class="px-4 py-2 rounded-md text-sm font-medium {{ str_starts_with($currentRoute, 'about') ? 'bg-yellow-400 text-black' : 'text-gray-300 hover:text-yellow-400' }} transition duration-300 flex items-center">
+                            class="px-4 py-2 rounded-md text-sm font-medium {{ str_starts_with($currentRoute, 'about') && $currentRoute != 'about/activity' ? 'bg-yellow-400 text-black' : 'text-gray-300 hover:text-yellow-400' }} transition duration-300 flex items-center">
                             About
                             <svg class="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" fill="none"
                                 stroke="currentColor" viewBox="0 0 24 24">
@@ -59,8 +59,8 @@
                     </div>
 
                     {{-- Activity --}}
-                    <a href="#activity"
-                        class="px-3 py-2 rounded-md text-sm font-medium {{ $currentRoute == 'activity' ? 'bg-yellow-400 text-black' : 'text-gray-300 hover:bg-gray-800 hover:text-yellow-400' }} transition duration-300">
+                    <a href="{{ route('about.activity') }}"
+                        class="px-3 py-2 rounded-md text-sm font-medium {{ $currentRoute == 'about/activity' ? 'bg-yellow-400 text-black' : 'text-gray-300 hover:bg-gray-800 hover:text-yellow-400' }} transition duration-300">
                         Activity
                     </a>
 
@@ -129,7 +129,7 @@
                 </div>
             </div>
 
-            <a href="#activity"
+            <a href="{{ route('about.activity') }}"
                 class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-800 hover:text-yellow-400">
                 Activity
             </a>

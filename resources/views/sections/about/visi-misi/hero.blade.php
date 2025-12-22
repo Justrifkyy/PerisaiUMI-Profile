@@ -25,7 +25,6 @@
             <div class="lg:col-span-3 space-y-6">
                 @include('components.home.hero-title', ['title' => $heroData['title']])
                 @include('components.home.hero-description', ['description' => $heroData['description']])
-                @include('components.home.cta-button', ['cta' => $heroData['cta']])
             </div>
 
             <!-- Right Content - Illustration (2/5 width) -->
