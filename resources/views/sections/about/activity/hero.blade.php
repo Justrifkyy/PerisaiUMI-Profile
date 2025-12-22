@@ -1,7 +1,7 @@
 @php
     $heroData = [
         'title' => [
-            'title1' => 'SEJARAH',
+            'title1' => 'KEGIATAN & AKTIVITAS',
             'title1_class' => 'text-5xl md:text-6xl lg:text-7xl',
             'subtitle1' => 'UNIT KEGIATAN MAHASISWA',
             'subtitle1_class' => 'text-sm md:text-base lg:text-lg',
@@ -10,9 +10,9 @@
             'subtitle2' => 'UNIVERSITAS MUSLIM INDONESIA',
             'subtitle2_class' => 'text-sm md:text-base lg:text-lg'
         ],
-        'description' => 'PERISAI UMI merupakan Unit Kegiatan Mahasiswa (UKM) resmi Universitas Muslim Indonesia yang berfokus pada pengembangan penelitian, riset, inovasi, dan kompetisi ilmiah.',
+        'description' => 'PERISAI UMI aktif menyelenggarakan berbagai kegiatan yang mendukung pengembangan riset, inovasi, dan prestasi mahasiswa. Dari workshop, seminar, kompetisi, hingga program pengabdian masyarakat.',
         'cta' => [
-            'text' => 'Pelajari Lebih Lanjut',
+            'text' => 'Lihat Kegiatan',
             'url' => '#content',
         ],
     ];

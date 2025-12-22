@@ -28,6 +28,10 @@ Route::prefix('about')->name('about.')->group(function () {
         return view('pages.about.departemen'); // TODO: Move to pages structure
     })->name('departemen');
 
+    Route::get('/activity', function () {
+        return view('pages.about.activity');
+    })->name('activity');
+
 });
 
 // Authentication Routes
