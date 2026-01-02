@@ -4,14 +4,33 @@
 @section('page-title', 'Dashboard')
 
 @section('content')
-    <div class="space-y-6">
+    <div class="space-y-8">
         <!-- Welcome Section -->
         <div class="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg p-6 shadow-lg">
             <h1 class="text-3xl font-bold text-gray-900">Welcome back, {{ auth()->user()->name }}! 👋</h1>
             <p class="text-gray-800 mt-2">Here's what's happening with your PERISAI website today.</p>
         </div>
 
-        <!-- Statistics Cards -->
+        <!-- Statistics Section (Landing Page Style) -->
+        @if(isset($statBoxes) && count($statBoxes) > 0)
+            <div class="bg-black rounded-lg p-8">
+                <!-- Section Title -->
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-semibold text-white">
+                        Website <span class="text-yellow-400">Statistics</span>
+                    </h2>
+                </div>
+
+                <!-- Stat Boxes -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    @foreach($statBoxes as $box)
+                        @include('components.home.stat-box', ['box' => $box])
+                    @endforeach
+                </div>
+            </div>
+        @endif
+
+        <!-- Management Overview Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- News Card -->
             <div
@@ -29,7 +48,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6">
                         </path>
                     </svg>
-                    Learn more
+                    Manage News
                 </a>
             </div>
 
@@ -49,7 +68,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6">
                         </path>
                     </svg>
-                    Learn more
+                    Manage Departments
                 </a>
             </div>
 
@@ -58,7 +77,7 @@
                 class="bg-gray-800 rounded-2xl p-8 border border-gray-700 hover:border-yellow-400 transition-all duration-300 shadow-xl hover:shadow-2xl">
                 <div class="mb-6">
                     <div class="inline-block bg-yellow-400 text-gray-900 px-4 py-2 rounded-lg font-bold text-sm mb-4">
-                        STATISTICS
+                        STATISTICS ITEMS
                     </div>
                     <div class="text-7xl font-bold text-yellow-400 mb-4">
                         {{ $stats['statistic_count'] }}
@@ -69,7 +88,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6">
                         </path>
                     </svg>
-                    Learn more
+                    Manage Statistics
                 </a>
             </div>
         </div>
@@ -101,7 +120,7 @@
                             d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
                         </path>
                     </svg>
-                    Upload Image
+                    Add Statistic
                 </button>
 
                 <a href="{{ url('/') }}" target="_blank"
@@ -118,18 +137,18 @@
             </div>
         </div>
 
-        <!-- Recent Activity (Placeholder) -->
+        <!-- Recent Activity -->
         <div class="bg-gray-800 rounded-lg p-6 border border-gray-700 shadow-lg">
             <h2 class="text-xl font-bold text-white mb-4">Recent Activity</h2>
             <div class="space-y-3">
                 <div class="flex items-center p-3 bg-gray-700 rounded-lg">
                     <div class="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                    <p class="text-gray-300 text-sm">System initialized successfully</p>
+                    <p class="text-gray-300 text-sm">Dashboard updated with statistics section</p>
                     <span class="ml-auto text-gray-500 text-xs">Just now</span>
                 </div>
                 <div class="flex items-center p-3 bg-gray-700 rounded-lg">
                     <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
-                    <p class="text-gray-300 text-sm">Admin dashboard created</p>
+                    <p class="text-gray-300 text-sm">Admin dashboard redesigned</p>
                     <span class="ml-auto text-gray-500 text-xs">Today</span>
                 </div>
             </div>

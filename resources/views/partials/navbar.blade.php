@@ -71,7 +71,7 @@
                     </a>
 
                     {{-- Contact Us --}}
-                    <a href="#contact"
+                    <a href="{{ route('contact') }}"
                         class="px-3 py-2 rounded-md text-sm font-medium {{ $currentRoute == 'contact' ? 'bg-yellow-400 text-black' : 'text-gray-300 hover:bg-gray-800 hover:text-yellow-400' }} transition duration-300">
                         Contact Us
                     </a>
@@ -137,7 +137,7 @@
                 class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-800 hover:text-yellow-400">
                 Competition
             </a>
-            <a href="#contact"
+            <a href="{{ route('contact') }}"
                 class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-800 hover:text-yellow-400">
                 Contact Us
             </a>
