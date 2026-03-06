@@ -28,11 +28,11 @@ class StatisticController extends Controller
         $statistic = Statistic::findOrFail($id);
 
         $validated = $request->validate([
-            'label' => 'sometimes|required|string',
-            'period' => 'nullable|string',
-            'number' => 'sometimes|required|integer',
-            'bg_class' => 'nullable|string',
-            'text_class' => 'nullable|string',
+            'label' => 'sometimes|required|string|max:255',
+            'period' => 'nullable|string|max:255',
+            'number' => 'sometimes|required|integer', // Konsisten menggunakan 'number'
+            'bg_class' => 'nullable|string|max:255',
+            'text_class' => 'nullable|string|max:255',
             'order' => 'nullable|integer',
             'is_active' => 'boolean',
         ]);
@@ -45,4 +45,3 @@ class StatisticController extends Controller
         ]);
     }
 }
-

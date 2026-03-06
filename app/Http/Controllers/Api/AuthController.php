@@ -11,7 +11,7 @@ use Illuminate\Validation\ValidationException;
 class AuthController extends Controller
 {
     /**
-     * Handle admin login
+     * Handle admin login via API
      */
     public function login(Request $request)
     {
@@ -48,7 +48,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Handle admin logout
+     * Handle admin logout via API
      */
     public function logout(Request $request)
     {
@@ -60,7 +60,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Get authenticated user
+     * Get authenticated user info
      */
     public function user(Request $request)
     {
@@ -73,4 +73,3 @@ class AuthController extends Controller
         ]);
     }
 }
-

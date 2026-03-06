@@ -9,26 +9,17 @@ use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
-    /**
-     * Display a listing of news
-     */
     public function index()
     {
         $news = News::latest('published_at')->paginate(10);
-        return view('pages.admin.news.index', compact('news'));
+        return view('admin.news.index', compact('news')); // Path diperbarui
     }
 
-    /**
-     * Show the form for creating a new news
-     */
     public function create()
     {
-        return view('pages.admin.news.create');
+        return view('admin.news.create'); // Path diperbarui
     }
 
-    /**
-     * Store a newly created news in storage
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -42,7 +33,6 @@ class NewsController extends Controller
             'order' => 'nullable|integer',
         ]);
 
-        // Handle image upload
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('news', 'public');
         }
@@ -53,17 +43,11 @@ class NewsController extends Controller
             ->with('success', 'News created successfully!');
     }
 
-    /**
-     * Show the form for editing the specified news
-     */
     public function edit(News $news)
     {
-        return view('pages.admin.news.edit', compact('news'));
+        return view('admin.news.edit', compact('news')); // Path diperbarui
     }
 
-    /**
-     * Update the specified news in storage
-     */
     public function update(Request $request, News $news)
     {
         $validated = $request->validate([
@@ -77,9 +61,7 @@ class NewsController extends Controller
             'order' => 'nullable|integer',
         ]);
 
-        // Handle image upload
         if ($request->hasFile('image')) {
-            // Delete old image
             if ($news->image) {
                 Storage::disk('public')->delete($news->image);
             }
@@ -92,12 +74,8 @@ class NewsController extends Controller
             ->with('success', 'News updated successfully!');
     }
 
-    /**
-     * Remove the specified news from storage
-     */
     public function destroy(News $news)
     {
-        // Delete image if exists
         if ($news->image) {
             Storage::disk('public')->delete($news->image);
         }

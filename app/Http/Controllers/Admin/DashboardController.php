@@ -31,7 +31,7 @@ class DashboardController extends Controller
             $statBoxes[] = [
                 'label' => strtoupper($stat->label),
                 'period' => $stat->period,
-                'number' => $stat->value,
+                'number' => $stat->number, // <-- Diperbaiki dari $stat->value menjadi $stat->number
                 'bgClass' => $stat->bg_class ?? 'bg-zinc-800',
                 'textClass' => $stat->text_class ?? 'text-gray-400',
                 'periodClass' => $stat->period_class ?? 'text-gray-300',
@@ -42,6 +42,7 @@ class DashboardController extends Controller
             ];
         }
 
-        return view('pages.admin.dashboard', compact('stats', 'statBoxes'));
+        // Path view diperbarui
+        return view('admin.dashboard', compact('stats', 'statBoxes'));
     }
 }

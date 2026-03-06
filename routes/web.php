@@ -1,72 +1,92 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
+
+// --- AUTH CONTROLLER ---
+use App\Http\Controllers\Auth\AuthController;
+
+// --- FRONTEND CONTROLLERS ---
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\AboutController;
+use App\Http\Controllers\Frontend\ActivityController;
+use App\Http\Controllers\Frontend\CompetitionController;
+use App\Http\Controllers\Frontend\ContactController;
+
+// --- ADMIN CONTROLLERS ---
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\DepartmentController;
+use App\Http\Controllers\Admin\DepartmentMemberController;
+use App\Http\Controllers\Admin\StatisticController;
+use App\Http\Controllers\Admin\GalleryController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
+
+// ==========================================
+// PUBLIC ROUTES (FRONTEND)
+// ==========================================
 
 // Homepage
-Route::get('/', function () {
-    return view('pages.home.index');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // About Routes
 Route::prefix('about')->name('about.')->group(function () {
-
-    Route::get('/sejarah', function () {
-        return view('pages.about.sejarah');
-    })->name('sejarah');
-
-    Route::get('/visi-misi', function () {
-        return view('pages.about.visi-misi');
-    })->name('visi-misi');
-
-    Route::get('/struktur', function () {
-        return view('pages.about.struktur'); // TODO: Create struktur page
-    })->name('struktur');
-
-    Route::get('/departemen', function () {
-        return view('pages.about.departemen'); // TODO: Move to pages structure
-    })->name('departemen');
-
-    Route::get('/activity', function () {
-        return view('pages.about.activity');
-    })->name('activity');
-
+    Route::get('/sejarah', [AboutController::class, 'sejarah'])->name('sejarah');
+    Route::get('/visi-misi', [AboutController::class, 'visiMisi'])->name('visi-misi');
+    Route::get('/struktur', [AboutController::class, 'struktur'])->name('struktur');
+    Route::get('/departemen', [AboutController::class, 'departemen'])->name('departemen');
 });
 
-// Contact Route
-Route::get('/contact', function () {
-    return view('pages.contact.index');
-})->name('contact');
+// Activity Route
+Route::get('/activity', [ActivityController::class, 'index'])->name('activity');
 
-// Authentication Routes
+// Competition Route
+Route::get('/competition', [CompetitionController::class, 'index'])->name('competition');
+
+// Contact Route
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send'); // Rute untuk menangani form kontak
+
+
+// ==========================================
+// AUTHENTICATION ROUTES
+// ==========================================
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Admin Routes
+
+// ==========================================
+// ADMIN PANEL ROUTES
+// ==========================================
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
+
+    // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // News Management
-    Route::resource('news', \App\Http\Controllers\Admin\NewsController::class);
+    Route::resource('news', NewsController::class);
 
     // Department Management
-    Route::resource('departments', \App\Http\Controllers\Admin\DepartmentController::class);
+    Route::resource('departments', DepartmentController::class);
 
-    // Department Members Management (nested)
+    // Department Members Management (Nested Routes)
     Route::prefix('departments/{department}')->name('departments.')->group(function () {
-        Route::get('/members', [\App\Http\Controllers\Admin\DepartmentMemberController::class, 'index'])->name('members.index');
-        Route::get('/members/create', [\App\Http\Controllers\Admin\DepartmentMemberController::class, 'create'])->name('members.create');
-        Route::post('/members', [\App\Http\Controllers\Admin\DepartmentMemberController::class, 'store'])->name('members.store');
-        Route::get('/members/{member}/edit', [\App\Http\Controllers\Admin\DepartmentMemberController::class, 'edit'])->name('members.edit');
-        Route::put('/members/{member}', [\App\Http\Controllers\Admin\DepartmentMemberController::class, 'update'])->name('members.update');
-        Route::delete('/members/{member}', [\App\Http\Controllers\Admin\DepartmentMemberController::class, 'destroy'])->name('members.destroy');
+        Route::get('/members', [DepartmentMemberController::class, 'index'])->name('members.index');
+        Route::get('/members/create', [DepartmentMemberController::class, 'create'])->name('members.create');
+        Route::post('/members', [DepartmentMemberController::class, 'store'])->name('members.store');
+        Route::get('/members/{member}/edit', [DepartmentMemberController::class, 'edit'])->name('members.edit');
+        Route::put('/members/{member}', [DepartmentMemberController::class, 'update'])->name('members.update');
+        Route::delete('/members/{member}', [DepartmentMemberController::class, 'destroy'])->name('members.destroy');
     });
 
     // Statistics Management
-    Route::resource('statistics', \App\Http\Controllers\Admin\StatisticController::class);
+    Route::resource('statistics', StatisticController::class);
 
     // Gallery Management
-    Route::resource('gallery', \App\Http\Controllers\Admin\GalleryController::class)->except(['create', 'edit', 'update']);
+    Route::resource('gallery', GalleryController::class)->except(['create', 'edit', 'update']);
 });

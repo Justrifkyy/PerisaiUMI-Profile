@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth; // 1. Namespace sudah diupdate
 
+use App\Http\Controllers\Controller; // 2. Wajib import base Controller
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,9 +17,13 @@ class AuthController extends Controller
             return redirect()->route('admin.dashboard');
         }
 
-        return view('pages.auth.login');
+        // 3. Path view sudah disesuaikan dengan struktur folder baru
+        return view('auth.login');
     }
 
+    /**
+     * Handle login request
+     */
     /**
      * Handle login request
      */
@@ -32,8 +37,12 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
 
+            // Berikan petunjuk ke Intelephense bahwa ini adalah Model User kita
+            /** @var \App\Models\User $user */
+            $user = Auth::user();
+
             // Check if user is admin
-            if (Auth::user()->isAdmin()) {
+            if ($user->isAdmin()) {
                 return redirect()->intended(route('admin.dashboard'));
             }
 
