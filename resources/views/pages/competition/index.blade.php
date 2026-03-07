@@ -1,3 +1,6 @@
+@php
+    /** @var \Illuminate\Pagination\LengthAwarePaginator|\App\Models\News[] $competitions */
+@endphp
 @extends('layouts.app')
 
 @section('title', 'Prestasi & Kompetisi - PERISAI UMI')

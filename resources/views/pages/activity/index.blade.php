@@ -1,3 +1,6 @@
+@php
+    /** @var \Illuminate\Pagination\LengthAwarePaginator|\App\Models\News[] $activities */
+@endphp
 @extends('layouts.app')
 
 @section('title', 'Kegiatan & Aktivitas - PERISAI UMI')

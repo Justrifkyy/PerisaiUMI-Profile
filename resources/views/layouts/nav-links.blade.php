@@ -1,10 +1,10 @@
 @php
     $navLinks = [
-        ['url' => '/home', 'label' => 'Home'],
-        ['url' => '/about', 'label' => 'About'],
-        ['url' => '#activity', 'label' => 'Activity'],
-        ['url' => '#competition', 'label' => 'Competition'],
-        ['url' => '#contact', 'label' => 'Contact Us'],
+        ['url' => route('home'), 'label' => 'Home'],
+        ['url' => route('about.sejarah'), 'label' => 'About'],
+        ['url' => route('activity'), 'label' => 'Activity'],
+        ['url' => route('competition'), 'label' => 'Competition'],
+        ['url' => route('contact'), 'label' => 'Contact Us'],
     ];
     $isMobile = isset($mobile) && $mobile;
     $linkClass = $isMobile 
