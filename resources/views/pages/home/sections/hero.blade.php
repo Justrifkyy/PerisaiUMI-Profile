@@ -1,4 +1,4 @@
-<section style="position:relative; padding-top: 100px; padding-bottom: 40px; min-height: 100vh; display: flex; align-items: center;">
+<section style="position:relative; padding-top: 50px; padding-bottom: 10px; min-height: 50vh; display: flex; align-items: center;">
     
     <div class="deco-star twinkle-1" style="top:100px; left:5%;"></div>
     <div class="deco-star sm twinkle-2" style="top:160px; left:9%;"></div>

@@ -14,8 +14,18 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #050505; /* Menyamakan warna background hitam gelap */
+            background-color: #050505;
             overflow-x: hidden;
+        }
+
+        /* ===== MAGIC ZOOM 125% KHUSUS DESKTOP ===== */
+        /* Layar Laptop/PC akan otomatis ter-zoom 125% tanpa merusak layout */
+        @media (min-width: 1024px) {
+            body {
+                zoom: 1.25; 
+                -moz-transform: scale(1.25); /* Fallback untuk browser Firefox jadul */
+                -moz-transform-origin: top center;
+            }
         }
     </style>
 
