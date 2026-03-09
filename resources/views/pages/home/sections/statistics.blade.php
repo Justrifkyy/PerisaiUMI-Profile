@@ -17,7 +17,7 @@
                     <div>
                         <div class="stat-label">{{ $stat->label }}</div>
                         <div class="stat-period">{!! $stat->period !!}</div>
-                        <a href="{{ route('about.struktur') }}" class="stat-link">
+                        <a href="{{ route('about.sumberdaya') }}" class="stat-link">
                             <span class="stat-link-icon">›</span>
                             Lihat Profil
                         </a>

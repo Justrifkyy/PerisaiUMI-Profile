@@ -2,8 +2,8 @@
     $navLinks = [
         ['url' => route('home'), 'label' => 'Home'],
         ['url' => route('about.sejarah'), 'label' => 'About'],
-        ['url' => route('activity'), 'label' => 'Activity'],
-        ['url' => route('competition'), 'label' => 'Competition'],
+        ['url' => route('activity.index'), 'label' => 'Activity'],
+        ['url' => route('competition.index'), 'label' => 'Competition'],
         ['url' => route('contact'), 'label' => 'Contact Us'],
     ];
     $isMobile = isset($mobile) && $mobile;

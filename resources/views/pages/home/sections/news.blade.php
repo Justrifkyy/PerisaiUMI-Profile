@@ -25,7 +25,7 @@
         </div>
 
         <div style="text-align:right; margin-top:32px; position:relative; z-index:10;" class="reveal">
-            <a href="{{ route('activity') }}" style="color:#fff; font-weight:800; text-decoration:none; font-size:1rem; transition:color 0.2s;" 
+            <a href="{{ route('activity.index') }}" style="color:#fff; font-weight:800; text-decoration:none; font-size:1rem; transition:color 0.2s;" 
                onmouseover="this.style.color='#FFC107'" onmouseout="this.style.color='#fff'">
                 Pelajari Selengkapnya →
             </a>

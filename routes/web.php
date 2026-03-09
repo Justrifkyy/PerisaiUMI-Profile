@@ -34,23 +34,62 @@ use App\Http\Controllers\Admin\GalleryController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // About Routes
-Route::prefix('about')->name('about.')->group(function () {
-    Route::get('/sejarah', [AboutController::class, 'sejarah'])->name('sejarah');
-    Route::get('/visi-misi', [AboutController::class, 'visiMisi'])->name('visi-misi');
-    Route::get('/struktur', [AboutController::class, 'struktur'])->name('struktur');
-    Route::get('/departemen', [AboutController::class, 'departemen'])->name('departemen');
-});
+// CONTOH ROUTES WEB.PHP
+Route::prefix('about')
+    ->name('about.')
+    ->group(function () {
+        Route::get('/sejarah', function () {
+            return view('pages.about.sejarah');
+        })->name('sejarah');
+        Route::get('/visi-misi', function () {
+            return view('pages.about.visi-misi');
+        })->name('visi-misi');
+
+        // Rute Baru
+        Route::get('/bagan', function () {
+            return view('pages.about.bagan');
+        })->name('bagan');
+        Route::get('/sumberdaya', function () {
+            return view('pages.about.sumberdaya.index');
+        })->name('sumberdaya');
+    });
 
 // Activity Route
-Route::get('/activity', [ActivityController::class, 'index'])->name('activity');
-
+Route::prefix('activity')
+    ->name('activity.')
+    ->group(function () {
+        Route::get('/', function () {
+            return view('pages.activity.index');
+        })->name('index');
+        Route::get('/proker', function () {
+            return view('pages.activity.proker');
+        })->name('proker');
+        Route::get('/news', function () {
+            return view('pages.activity.news');
+        })->name('news');
+        Route::get('/proker/detail', function () {
+            return view('pages.activity.detailproker');
+        })->name('detailproker');
+        Route::get('/news/detail', function () {
+            return view('pages.activity.detailnews');
+        })->name('detailnews');
+    });
 // Competition Route
-Route::get('/competition', [CompetitionController::class, 'index'])->name('competition');
+Route::prefix('competition')
+    ->name('competition.')
+    ->group(function () {
+        Route::get('/', function () {
+            return view('pages.competition.index');
+        })->name('index');
 
+        // Rute menuju halaman show/detail
+        Route::get('/detail', function () {
+            return view('pages.competition.show');
+        })->name('show');
+    });
 // Contact Route
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send'); // Rute untuk menangani form kontak
-
 
 // ==========================================
 // AUTHENTICATION ROUTES
@@ -59,34 +98,37 @@ Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-
 // ==========================================
 // ADMIN PANEL ROUTES
 // ==========================================
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
+Route::prefix('admin')
+    ->name('admin.')
+    ->middleware(['auth', 'admin'])
+    ->group(function () {
+        // Dashboard
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    // Dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        // News Management
+        Route::resource('news', NewsController::class);
 
-    // News Management
-    Route::resource('news', NewsController::class);
+        // Department Management
+        Route::resource('departments', DepartmentController::class);
 
-    // Department Management
-    Route::resource('departments', DepartmentController::class);
+        // Department Members Management (Nested Routes)
+        Route::prefix('departments/{department}')
+            ->name('departments.')
+            ->group(function () {
+                Route::get('/members', [DepartmentMemberController::class, 'index'])->name('members.index');
+                Route::get('/members/create', [DepartmentMemberController::class, 'create'])->name('members.create');
+                Route::post('/members', [DepartmentMemberController::class, 'store'])->name('members.store');
+                Route::get('/members/{member}/edit', [DepartmentMemberController::class, 'edit'])->name('members.edit');
+                Route::put('/members/{member}', [DepartmentMemberController::class, 'update'])->name('members.update');
+                Route::delete('/members/{member}', [DepartmentMemberController::class, 'destroy'])->name('members.destroy');
+            });
 
-    // Department Members Management (Nested Routes)
-    Route::prefix('departments/{department}')->name('departments.')->group(function () {
-        Route::get('/members', [DepartmentMemberController::class, 'index'])->name('members.index');
-        Route::get('/members/create', [DepartmentMemberController::class, 'create'])->name('members.create');
-        Route::post('/members', [DepartmentMemberController::class, 'store'])->name('members.store');
-        Route::get('/members/{member}/edit', [DepartmentMemberController::class, 'edit'])->name('members.edit');
-        Route::put('/members/{member}', [DepartmentMemberController::class, 'update'])->name('members.update');
-        Route::delete('/members/{member}', [DepartmentMemberController::class, 'destroy'])->name('members.destroy');
+        // Statistics Management
+        Route::resource('statistics', StatisticController::class);
+
+        // Gallery Management
+        Route::resource('gallery', GalleryController::class)->except(['create', 'edit', 'update']);
     });
-
-    // Statistics Management
-    Route::resource('statistics', StatisticController::class);
-
-    // Gallery Management
-    Route::resource('gallery', GalleryController::class)->except(['create', 'edit', 'update']);
-});

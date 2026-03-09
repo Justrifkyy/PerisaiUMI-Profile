@@ -37,7 +37,7 @@
                 <p class="section-desc">
                     Ikuti kupas tuntas dalam Focus Group Discussion (FGD) bersama narasumber ahli. Dengan tema: <em>"IPK Tinggi vs Kemampuan Berpikir Kritis: Mana yang Lebih Mempresentasikan Mahasiswa Berkualitas?"</em>
                 </p>
-                <a href="{{ route('activity') }}" class="learn-link">Pelajari Selengkapnya →</a>
+                <a href="{{ route('activity.index') }}" class="learn-link">Pelajari Selengkapnya →</a>
             </div>
         </div>
     </div>
