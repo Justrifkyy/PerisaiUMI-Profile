@@ -9,26 +9,17 @@ use Illuminate\Support\Facades\Storage;
 
 class DepartmentController extends Controller
 {
-    /**
-     * Display a listing of departments
-     */
     public function index()
     {
         $departments = Department::ordered()->paginate(10);
-        return view('pages.admin.departments.index', compact('departments'));
+        return view('admin.departments.index', compact('departments')); // Path diperbarui
     }
 
-    /**
-     * Show the form for creating a new department
-     */
     public function create()
     {
-        return view('pages.admin.departments.create');
+        return view('admin.departments.create'); // Path diperbarui
     }
 
-    /**
-     * Store a newly created department in storage
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -40,7 +31,6 @@ class DepartmentController extends Controller
             'is_active' => 'boolean',
         ]);
 
-        // Handle icon upload
         if ($request->hasFile('icon')) {
             $validated['icon'] = $request->file('icon')->store('departments', 'public');
         }
@@ -51,17 +41,11 @@ class DepartmentController extends Controller
             ->with('success', 'Department created successfully!');
     }
 
-    /**
-     * Show the form for editing the specified department
-     */
     public function edit(Department $department)
     {
-        return view('pages.admin.departments.edit', compact('department'));
+        return view('admin.departments.edit', compact('department')); // Path diperbarui
     }
 
-    /**
-     * Update the specified department in storage
-     */
     public function update(Request $request, Department $department)
     {
         $validated = $request->validate([
@@ -73,9 +57,7 @@ class DepartmentController extends Controller
             'is_active' => 'boolean',
         ]);
 
-        // Handle icon upload
         if ($request->hasFile('icon')) {
-            // Delete old icon
             if ($department->icon) {
                 Storage::disk('public')->delete($department->icon);
             }
@@ -88,12 +70,8 @@ class DepartmentController extends Controller
             ->with('success', 'Department updated successfully!');
     }
 
-    /**
-     * Remove the specified department from storage
-     */
     public function destroy(Department $department)
     {
-        // Delete icon if exists
         if ($department->icon) {
             Storage::disk('public')->delete($department->icon);
         }

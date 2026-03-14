@@ -9,18 +9,12 @@ use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
 {
-    /**
-     * Display a listing of gallery images
-     */
     public function index()
     {
         $galleries = Gallery::latest()->paginate(20);
-        return view('pages.admin.gallery.index', compact('galleries'));
+        return view('admin.gallery.index', compact('galleries')); // Path diperbarui
     }
 
-    /**
-     * Store newly uploaded images
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -47,12 +41,8 @@ class GalleryController extends Controller
             ->with('success', 'Images uploaded successfully!');
     }
 
-    /**
-     * Remove the specified image from storage
-     */
     public function destroy(Gallery $gallery)
     {
-        // Delete image file
         if ($gallery->image_path) {
             Storage::disk('public')->delete($gallery->image_path);
         }

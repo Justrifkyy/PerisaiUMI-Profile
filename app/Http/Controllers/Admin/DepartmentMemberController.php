@@ -10,26 +10,17 @@ use Illuminate\Support\Facades\Storage;
 
 class DepartmentMemberController extends Controller
 {
-    /**
-     * Display members of a specific department
-     */
     public function index(Department $department)
     {
         $members = $department->organizationalStructures()->ordered()->paginate(20);
-        return view('pages.admin.departments.members', compact('department', 'members'));
+        return view('admin.departments.members', compact('department', 'members')); // Path diperbarui
     }
 
-    /**
-     * Show the form for creating a new member
-     */
     public function create(Department $department)
     {
-        return view('pages.admin.departments.members-create', compact('department'));
+        return view('admin.departments.members-create', compact('department')); // Path diperbarui
     }
 
-    /**
-     * Store a newly created member
-     */
     public function store(Request $request, Department $department)
     {
         $validated = $request->validate([
@@ -44,7 +35,6 @@ class DepartmentMemberController extends Controller
 
         $validated['department_id'] = $department->id;
 
-        // Handle photo upload
         if ($request->hasFile('photo')) {
             $validated['photo'] = $request->file('photo')->store('members', 'public');
         }
@@ -55,17 +45,11 @@ class DepartmentMemberController extends Controller
             ->with('success', 'Member added successfully!');
     }
 
-    /**
-     * Show the form for editing a member
-     */
     public function edit(Department $department, OrganizationalStructure $member)
     {
-        return view('pages.admin.departments.members-edit', compact('department', 'member'));
+        return view('admin.departments.members-edit', compact('department', 'member')); // Path diperbarui
     }
 
-    /**
-     * Update the specified member
-     */
     public function update(Request $request, Department $department, OrganizationalStructure $member)
     {
         $validated = $request->validate([
@@ -78,9 +62,7 @@ class DepartmentMemberController extends Controller
             'is_active' => 'boolean',
         ]);
 
-        // Handle photo upload
         if ($request->hasFile('photo')) {
-            // Delete old photo
             if ($member->photo) {
                 Storage::disk('public')->delete($member->photo);
             }
@@ -93,12 +75,8 @@ class DepartmentMemberController extends Controller
             ->with('success', 'Member updated successfully!');
     }
 
-    /**
-     * Remove the specified member
-     */
     public function destroy(Department $department, OrganizationalStructure $member)
     {
-        // Delete photo if exists
         if ($member->photo) {
             Storage::disk('public')->delete($member->photo);
         }

@@ -8,26 +8,17 @@ use Illuminate\Http\Request;
 
 class StatisticController extends Controller
 {
-    /**
-     * Display a listing of statistics
-     */
     public function index()
     {
         $statistics = Statistic::ordered()->paginate(10);
-        return view('pages.admin.statistics.index', compact('statistics'));
+        return view('admin.statistics.index', compact('statistics')); // Path diperbarui
     }
 
-    /**
-     * Show the form for creating a new statistic
-     */
     public function create()
     {
-        return view('pages.admin.statistics.create');
+        return view('admin.statistics.create'); // Path diperbarui
     }
 
-    /**
-     * Store a newly created statistic in storage
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -46,17 +37,11 @@ class StatisticController extends Controller
             ->with('success', 'Statistic created successfully!');
     }
 
-    /**
-     * Show the form for editing the specified statistic
-     */
     public function edit(Statistic $statistic)
     {
-        return view('pages.admin.statistics.edit', compact('statistic'));
+        return view('admin.statistics.edit', compact('statistic')); // Path diperbarui
     }
 
-    /**
-     * Update the specified statistic in storage
-     */
     public function update(Request $request, Statistic $statistic)
     {
         $validated = $request->validate([
@@ -75,9 +60,6 @@ class StatisticController extends Controller
             ->with('success', 'Statistic updated successfully!');
     }
 
-    /**
-     * Remove the specified statistic from storage
-     */
     public function destroy(Statistic $statistic)
     {
         $statistic->delete();

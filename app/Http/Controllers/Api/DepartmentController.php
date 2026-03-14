@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Department;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DepartmentController extends Controller
 {
@@ -41,10 +42,14 @@ class DepartmentController extends Controller
             'name' => 'required|string|max:255',
             'full_name' => 'nullable|string',
             'description' => 'nullable|string',
-            'icon' => 'nullable|string',
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Diubah menjadi validasi image
             'order' => 'nullable|integer',
             'is_active' => 'boolean',
         ]);
+
+        if ($request->hasFile('icon')) {
+            $validated['icon'] = $request->file('icon')->store('departments', 'public');
+        }
 
         $department = Department::create($validated);
 
@@ -65,10 +70,17 @@ class DepartmentController extends Controller
             'name' => 'sometimes|required|string|max:255',
             'full_name' => 'nullable|string',
             'description' => 'nullable|string',
-            'icon' => 'nullable|string',
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Diubah menjadi validasi image
             'order' => 'nullable|integer',
             'is_active' => 'boolean',
         ]);
+
+        if ($request->hasFile('icon')) {
+            if ($department->icon) {
+                Storage::disk('public')->delete($department->icon);
+            }
+            $validated['icon'] = $request->file('icon')->store('departments', 'public');
+        }
 
         $department->update($validated);
 
@@ -84,6 +96,11 @@ class DepartmentController extends Controller
     public function destroy($id)
     {
         $department = Department::findOrFail($id);
+
+        if ($department->icon) {
+            Storage::disk('public')->delete($department->icon);
+        }
+
         $department->delete();
 
         return response()->json([
@@ -91,4 +108,3 @@ class DepartmentController extends Controller
         ]);
     }
 }
-
