@@ -5,22 +5,15 @@
 @push('styles')
 <style>
     .font-bebas { font-family: 'Bebas Neue', sans-serif; }
-    .badge-yellow { background-color: #FFC107; color: #000; font-weight: 800; padding: 4px 12px; border-radius: 6px; display: inline-block; font-size: 0.9rem; margin-bottom: 8px; }
-    .text-content { color: #d1d5db; font-size: 1rem; line-height: 1.6; font-weight: 400; margin-bottom: 24px; }
+    /* Badge diperbagus dengan shadow */
+    .badge-yellow { background-color: #FFC107; color: #000; font-weight: 800; padding: 6px 14px; border-radius: 8px; display: inline-block; font-size: 0.9rem; margin-bottom: 12px; shadow-[0_4px_15px_rgba(255,193,7,0.3)]; }
+    .text-content { color: #d1d5db; font-size: 1rem; line-height: 1.7; font-weight: 400; margin-bottom: 32px; }
 
-    /* --- EFEK BINTANG DEKORASI --- */
-    .deco-star {
-        position: absolute; background: #FFC107;
-        clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
-        filter: drop-shadow(0 0 8px #FFC107); pointer-events: none; z-index: 0;
-    }
-    .deco-star.base { width: 14px; height: 14px; }
-    .deco-star.sm { width: 8px; height: 8px; }
-    .deco-star.lg { width: 20px; height: 20px; }
+    /* Efek Bintang */
+    .deco-star { position: absolute; background: #FFC107; clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); filter: drop-shadow(0 0 8px #FFC107); pointer-events: none; z-index: 0; }
+    .deco-star.base { width: 14px; height: 14px; } .deco-star.sm { width: 8px; height: 8px; } .deco-star.lg { width: 20px; height: 20px; }
     @keyframes twinkle { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(0.6); } }
-    .twinkle-1 { animation: twinkle 2s ease-in-out infinite; }
-    .twinkle-2 { animation: twinkle 2.8s ease-in-out infinite 0.5s; }
-    .twinkle-3 { animation: twinkle 2.3s ease-in-out infinite 1s; }
+    .twinkle-1 { animation: twinkle 2s ease-in-out infinite; } .twinkle-2 { animation: twinkle 2.8s ease-in-out infinite 0.5s; } .twinkle-3 { animation: twinkle 2.3s ease-in-out infinite 1s; }
 </style>
 @endpush
 
@@ -49,6 +42,7 @@
 
     <div class="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 xl:px-24 pt-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+            
             <div class="lg:col-span-8" data-aos="fade-right">
                 <div>
                     <span class="badge-yellow">Sejarah PERISAI UMI (Pusat Pengembangan Riset Mahasiswa UMI)</span>
@@ -57,44 +51,50 @@
                 <div>
                     <span class="badge-yellow">Awal Berdiri</span>
                     <div class="text-content">PERISAI UMI dibentuk oleh sekelompok mahasiswa yang aktif dalam kegiatan akademik dan riset, yang melihat bahwa UMI memerlukan komunitas formal untuk:
-                        <ul class="list-disc pl-6 mt-2 space-y-1">
-                            <li>Meningkatkan budaya ilmiah,</li>
-                            <li>Mendorong mahasiswa ikut lomba tingkat regional hingga nasional,</li>
-                            <li>Mempersiapkan kader unggul,</li>
+                        <ul class="list-disc pl-6 mt-3 space-y-2 marker:text-[#FFC107]">
+                            <li>Meningkatkan budaya ilmiah.</li>
+                            <li>Mendorong mahasiswa ikut lomba tingkat regional hingga nasional.</li>
+                            <li>Mempersiapkan kader unggul.</li>
                             <li>Mengembangkan inovasi di bidang teknologi dan penelitian sosial.</li>
                         </ul>
-                        Melalui dukungan pimpinan universitas dan semangat para pendiri, PERISAI UMI resmi disahkan sebagai UKM yang menaungi kegiatan riset dan inovasi mahasiswa.
+                        <p class="mt-3">Melalui dukungan pimpinan universitas dan semangat para pendiri, PERISAI UMI resmi disahkan sebagai UKM yang menaungi kegiatan riset dan inovasi mahasiswa.</p>
                     </div>
                 </div>
                 <div>
                     <span class="badge-yellow">Perkembangan dan Kontribusi</span>
                     <div class="text-content">Sejak berdiri, PERISAI UMI terus berkembang melalui:
-                        <ul class="list-disc pl-6 mt-2 space-y-1">
+                        <ul class="list-disc pl-6 mt-3 space-y-2 marker:text-[#FFC107]">
                             <li>Pembentukan 6 departemen fungsional: PSDM, KOMPRES, HUMAS, RISTEK, Penalaran, dan Media.</li>
                             <li>Pembinaan intensif karya ilmiah, PKM, riset, dan teknologi.</li>
                             <li>Keterlibatan aktif dalam event nasional.</li>
                             <li>Pencapaian prestasi mahasiswa UMI di berbagai lomba dan kompetisi.</li>
                         </ul>
-                        PERISAI UMI juga menjadi rumah bagi para "Inovator" sebutan bagi anggotanya, untuk berkolaborasi, berkreasi, dan berkontribusi bagi kampus.
+                        <p class="mt-3">PERISAI UMI juga menjadi rumah bagi para "Inovator" sebutan bagi anggotanya, untuk berkolaborasi, berkreasi, dan berkontribusi bagi kampus.</p>
                     </div>
                 </div>
                 <div>
                     <span class="badge-yellow">Peran di UMI</span>
                     <div class="text-content">UKM ini kini menjadi garda terdepan dalam:
-                        <ul class="list-disc pl-6 mt-2 space-y-1">
-                            <li>Pengembangan budaya akademik,</li>
-                            <li>Pembinaan mahasiswa berprestasi,</li>
-                            <li>Penguatan identitas UMI sebagai kampus riset dan inovasi,</li>
+                        <ul class="list-disc pl-6 mt-3 space-y-2 marker:text-[#FFC107]">
+                            <li>Pengembangan budaya akademik.</li>
+                            <li>Pembinaan mahasiswa berprestasi.</li>
+                            <li>Penguatan identitas UMI sebagai kampus riset dan inovasi.</li>
                             <li>Membawa nama baik kampus melalui berbagai prestasi ilmiah.</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <div class="lg:col-span-4 space-y-6" data-aos="fade-left">
-                <div class="w-full aspect-square bg-[#111] rounded-xl shadow-[0_0_20px_rgba(255,193,7,0.05)] border border-gray-800"></div>
-                <div class="w-full aspect-square bg-[#111] rounded-xl shadow-[0_0_20px_rgba(255,193,7,0.05)] border border-gray-800"></div>
-                <div class="w-full aspect-square bg-[#111] rounded-xl shadow-[0_0_20px_rgba(255,193,7,0.05)] border border-gray-800"></div>
+            <div class="lg:col-span-4 space-y-8" data-aos="fade-left">
+                <div class="w-full aspect-square rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(255,193,7,0.1)] border border-gray-800 group">
+                    <img src="https://via.placeholder.com/600x600.png?text=Dokumentasi+Sejarah+1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Sejarah 1">
+                </div>
+                <div class="w-full aspect-square rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(255,193,7,0.1)] border border-gray-800 group">
+                    <img src="https://via.placeholder.com/600x600.png?text=Dokumentasi+Sejarah+2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Sejarah 2">
+                </div>
+                <div class="w-full aspect-square rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(255,193,7,0.1)] border border-gray-800 group">
+                    <img src="https://via.placeholder.com/600x600.png?text=Dokumentasi+Sejarah+3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Sejarah 3">
+                </div>
             </div>
         </div>
     </div>

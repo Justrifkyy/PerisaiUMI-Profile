@@ -31,9 +31,10 @@
         </div>
     </div>
 
-    <div class="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 xl:px-24 pt-8">
+    <div class="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 xl:px-24 pt-12">
         <div class="w-full" data-aos="fade-up">
-            <ol class="list-decimal pl-6 text-gray-300 text-lg md:text-xl font-medium space-y-3 mb-12">
+            
+            <ol class="list-decimal pl-6 text-gray-300 text-lg md:text-xl font-medium space-y-4 mb-16 marker:text-[#FFC107] marker:font-bold">
                 <li><strong class="text-white">Struktur PERISAI UMI terdiri dari:</strong> Pembina, Dewan Pertimbangan Organisasi, pengurus inti dan staf ahli</li>
                 <li><strong class="text-white">Pembina</strong> adalah orang yang diamanahkan oleh birokrasi dalam hal ini Wakil Rektor III Universitas Muslim Indonesia</li>
                 <li><strong class="text-white">Dewan Pertimbangan Organisasi</strong> adalah demisioner PERISAI UMI yang berjumlah 7 orang.</li>
@@ -42,9 +43,12 @@
                 <li><strong class="text-white">Anggota biasa</strong> adalah generasi baru PERISAI UMI</li>
             </ol>
 
-            <div class="w-full bg-[#111] rounded-xl overflow-hidden shadow-[0_0_30px_rgba(255,193,7,0.1)] border border-gray-800 p-4 md:p-8">
-                <img src="https://via.placeholder.com/1200x600.png?text=Bagan+Struktur+Organisasi" alt="Bagan Struktur Organisasi" class="w-full h-auto object-contain">
+            <div class="w-full bg-[#111] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-gray-800 p-6 md:p-10 group">
+                <div class="relative w-full rounded-xl overflow-hidden">
+                    <img src="https://via.placeholder.com/1400x700.png?text=Bagan+Struktur+Organisasi" alt="Bagan Struktur Organisasi" class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]">
+                </div>
             </div>
+            
         </div>
     </div>
 </div>

@@ -5,8 +5,8 @@
 @push('styles')
 <style>
     .font-bebas { font-family: 'Bebas Neue', sans-serif; }
-    .badge-yellow { background-color: #FFC107; color: #000; font-weight: 800; padding: 4px 12px; border-radius: 6px; display: inline-block; font-size: 0.9rem; margin-bottom: 8px; }
-    .text-content { color: #d1d5db; font-size: 1rem; line-height: 1.6; font-weight: 400; margin-bottom: 32px; }
+    .badge-yellow { background-color: #FFC107; color: #000; font-weight: 800; padding: 6px 14px; border-radius: 8px; display: inline-block; font-size: 0.9rem; margin-bottom: 12px; shadow-[0_4px_15px_rgba(255,193,7,0.3)]; }
+    .text-content { color: #d1d5db; font-size: 1rem; line-height: 1.7; font-weight: 400; margin-bottom: 32px; }
 
     /* Bintang */
     .deco-star { position: absolute; background: #FFC107; clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); filter: drop-shadow(0 0 8px #FFC107); pointer-events: none; z-index: 0; }
@@ -37,14 +37,15 @@
 
     <div class="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 xl:px-24 pt-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+            
             <div class="lg:col-span-8" data-aos="fade-right">
                 <div>
                     <span class="badge-yellow">VISI PERISAI UMI</span>
-                    <p class="text-content">Menjadi organisasi mahasiswa yang unggul dalam riset, inovasi, dan pengembangan penalaran ilmiah untuk menciptakan generasi inovator yang kompeten, berintegritas, dan berdaya saing di tingkat nasional maupun internasional.</p>
+                    <p class="text-content mt-2">Menjadi organisasi mahasiswa yang unggul dalam riset, inovasi, dan pengembangan penalaran ilmiah untuk menciptakan generasi inovator yang kompeten, berintegritas, dan berdaya saing di tingkat nasional maupun internasional.</p>
                 </div>
                 <div>
                     <span class="badge-yellow">MISI PERISAI UMI</span>
-                    <ol class="list-decimal pl-6 text-content space-y-2">
+                    <ol class="list-decimal pl-6 text-content space-y-3 mt-3 marker:text-[#FFC107] marker:font-bold">
                         <li>Mengembangkan budaya ilmiah di lingkungan mahasiswa melalui pembinaan riset, penalaran, dan inovasi.</li>
                         <li>Menyelenggarakan pelatihan, workshop, dan program pembinaan berkelanjutan untuk meningkatkan kompetensi anggota.</li>
                         <li>Mendorong mahasiswa aktif berpartisipasi pada kompetisi ilmiah seperti PKM, esai, debat, karya tulis, dan inovasi teknologi.</li>
@@ -55,7 +56,7 @@
                 </div>
                 <div>
                     <span class="badge-yellow">TUJUAN</span>
-                    <ol class="list-decimal pl-6 text-content space-y-2">
+                    <ol class="list-decimal pl-6 text-content space-y-3 mt-3 marker:text-[#FFC107] marker:font-bold">
                         <li>Mencetak mahasiswa yang unggul dalam riset, PKM, dan inovasi teknologi.</li>
                         <li>Menjadi wadah pembinaan bagi mahasiswa UMI untuk mencapai prestasi ilmiah tingkat regional, nasional, hingga internasional.</li>
                         <li>Menghasilkan karya riset dan inovasi yang bermanfaat bagi masyarakat, kampus, dan pengembangan keilmuan.</li>
@@ -65,9 +66,13 @@
                 </div>
             </div>
 
-            <div class="lg:col-span-4 space-y-6" data-aos="fade-left">
-                <div class="w-full aspect-square bg-[#111] rounded-xl shadow-[0_0_20px_rgba(255,193,7,0.05)] border border-gray-800"></div>
-                <div class="w-full aspect-square bg-[#111] rounded-xl shadow-[0_0_20px_rgba(255,193,7,0.05)] border border-gray-800"></div>
+            <div class="lg:col-span-4 space-y-8" data-aos="fade-left">
+                <div class="w-full aspect-square rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(255,193,7,0.1)] border border-gray-800 group">
+                    <img src="https://via.placeholder.com/600x600.png?text=Dokumentasi+Visi+Misi+1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Visi Misi 1">
+                </div>
+                <div class="w-full aspect-square rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(255,193,7,0.1)] border border-gray-800 group">
+                    <img src="https://via.placeholder.com/600x600.png?text=Dokumentasi+Visi+Misi+2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Visi Misi 2">
+                </div>
             </div>
         </div>
     </div>

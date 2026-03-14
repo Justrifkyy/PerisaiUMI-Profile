@@ -7,9 +7,6 @@ use App\Http\Controllers\Auth\AuthController;
 
 // --- FRONTEND CONTROLLERS ---
 use App\Http\Controllers\Frontend\HomeController;
-use App\Http\Controllers\Frontend\AboutController;
-use App\Http\Controllers\Frontend\ActivityController;
-use App\Http\Controllers\Frontend\CompetitionController;
 use App\Http\Controllers\Frontend\ContactController;
 
 // --- ADMIN CONTROLLERS ---
@@ -34,7 +31,6 @@ use App\Http\Controllers\Admin\GalleryController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // About Routes
-// CONTOH ROUTES WEB.PHP
 Route::prefix('about')
     ->name('about.')
     ->group(function () {
@@ -44,17 +40,20 @@ Route::prefix('about')
         Route::get('/visi-misi', function () {
             return view('pages.about.visi-misi');
         })->name('visi-misi');
-
-        // Rute Baru
         Route::get('/bagan', function () {
             return view('pages.about.bagan');
         })->name('bagan');
+
+        // Sumber Daya & Detail Departemen
         Route::get('/sumberdaya', function () {
             return view('pages.about.sumberdaya.index');
         })->name('sumberdaya');
+        Route::get('/sumberdaya/departemen/detail', function () {
+            return view('pages.about.sumberdaya.detaildepartemen');
+        })->name('departemen.detail');
     });
 
-// Activity Route
+// Activity Routes
 Route::prefix('activity')
     ->name('activity.')
     ->group(function () {
@@ -74,22 +73,22 @@ Route::prefix('activity')
             return view('pages.activity.detailnews');
         })->name('detailnews');
     });
-// Competition Route
+
+// Competition Routes
 Route::prefix('competition')
     ->name('competition.')
     ->group(function () {
         Route::get('/', function () {
             return view('pages.competition.index');
         })->name('index');
-
-        // Rute menuju halaman show/detail
         Route::get('/detail', function () {
             return view('pages.competition.show');
         })->name('show');
     });
-// Contact Route
+
+// Contact Routes
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send'); // Rute untuk menangani form kontak
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
 // ==========================================
 // AUTHENTICATION ROUTES
