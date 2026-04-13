@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Department;
-use App\Models\OrganizationalStructure;
+use App\Models\Member;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -16,23 +16,56 @@ class AboutController extends Controller
 
     public function visiMisi()
     {
-        return view('pages.about.visi-misi');
+        // Ambil semua departemen aktif dengan visi & misi
+        $departments = Department::active()->ordered()->get();
+
+        return view('pages.about.visi-misi', compact('departments'));
     }
 
     public function struktur()
     {
-        // Menarik pengurus inti (yang tidak terikat ke departemen manapun)
-        // Catatan: Pastikan kamu menyesuaikan logika ini dengan struktur databasemu nanti
-        return view('pages.about.struktur');
+        // Menarik semua struktur pengurus dari database
+        $pembina = Member::where('hierarchy', 'pembina')->active()->ordered()->get();
+        $inti = Member::where('hierarchy', 'inti')->active()->ordered()->get();
+        $kadep = Member::where('hierarchy', 'kadep')->active()->ordered()->with('department')->get();
+        $staf = Member::where('hierarchy', 'staf')->active()->ordered()->with('department')->get();
+
+        return view('pages.about.struktur', compact('pembina', 'inti', 'kadep', 'staf'));
     }
 
-    public function departemen()
+    public function bagan()
     {
-        // Tarik semua departemen aktif beserta anggotanya (Eager Loading untuk performa)
-        $departments = Department::active()->ordered()->with(['organizationalStructures' => function ($query) {
-            $query->active()->ordered();
-        }])->get();
+        // Bagan Organisasi - menampilkan struktur pengurus dalam format bagan/diagram
+        $pembina = Member::where('hierarchy', 'pembina')->active()->ordered()->get();
+        $inti = Member::where('hierarchy', 'inti')->active()->ordered()->get();
+        $kadep = Member::where('hierarchy', 'kadep')->active()->ordered()->with('department')->get();
+        $staf = Member::where('hierarchy', 'staf')->active()->ordered()->with('department')->get();
 
-        return view('pages.about.departemen', compact('departments'));
+        return view('pages.about.bagan', compact('pembina', 'inti', 'kadep', 'staf'));
+    }
+
+    public function sumberDaya()
+    {
+        // Tarik semua members aktif dikelompokkan per hierarchy
+        $pembina = Member::where('hierarchy', 'pembina')->active()->ordered()->get();
+        $inti = Member::where('hierarchy', 'inti')->active()->ordered()->get();
+        $kadep = Member::where('hierarchy', 'kadep')->active()->ordered()->with('department')->get();
+        $staf = Member::where('hierarchy', 'staf')->active()->ordered()->with('department')->get();
+
+        return view('pages.about.sumberdaya.index', compact('pembina', 'inti', 'kadep', 'staf'));
+    }
+
+    public function departemenDetail($slug = null)
+    {
+        // Ambil departemen berdasarkan slug
+        $department = Department::where('slug', $slug)->active()->firstOrFail();
+
+        // Ambil members departemen ini
+        $members = $department->members()->active()->ordered()->get();
+
+        // Ambil work programs departemen
+        $workPrograms = $department->workPrograms()->active()->ordered()->get();
+
+        return view('pages.about.detail-departemen', compact('department', 'members', 'workPrograms'));
     }
 }

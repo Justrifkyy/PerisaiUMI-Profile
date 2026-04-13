@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\WebSetting;
+use App\Models\InboxMessage;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -12,7 +14,10 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('pages.contact.index');
+        // Ambil web settings untuk info kontak
+        $settings = WebSetting::getSettings();
+
+        return view('pages.contact.index', compact('settings'));
     }
 
     /**
@@ -24,13 +29,13 @@ class ContactController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
+            'phone' => 'nullable|string|max:20',
             'subject' => 'required|string|max:255',
             'message' => 'required|string',
         ]);
 
-        // TODO untuk tahap selanjutnya: 
-        // 1. Simpan ke database tabel `messages`
-        // ATAU 2. Kirim ke email UKM menggunakan fungsi Mail::to()
+        // Simpan pesan ke database
+        InboxMessage::create($validated);
 
         // Mengembalikan user ke halaman contact dengan pesan sukses
         return back()->with('success', 'Terima kasih, pesan Anda berhasil dikirim! Kami akan segera menghubungi Anda.');

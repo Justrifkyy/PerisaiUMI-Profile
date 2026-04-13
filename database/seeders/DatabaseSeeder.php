@@ -22,12 +22,15 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
         ]);
 
-        // Seed content tables
+        // Seed all modules
         $this->call([
-            NewsSeeder::class,
+            WebSettingSeeder::class,
             StatisticSeeder::class,
             DepartmentSeeder::class,
+            MemberSeeder::class,
+            WorkProgramSeeder::class,
+            NewsSeeder::class,
+            CompetitionSeeder::class,
         ]);
     }
 }
-

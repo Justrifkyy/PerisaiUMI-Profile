@@ -14,26 +14,39 @@ class NewsSeeder extends Seeder
     public function run(): void
     {
         News::create([
-            'title' => 'PERISAI HUMANITY',
-            'description' => 'Program kemanusiaan dan pengabdian masyarakat yang dilakukan oleh anggota PERISAI UMI untuk memberikan dampak positif bagi lingkungan sekitar.',
-            'gradient' => 'from-yellow-500 to-yellow-700',
-            'image' => 'images/prestasi.jpg',
-            'category' => 'humanity',
+            'title' => 'PERISAI Meraih Penghargaan Best Innovation 2024',
+            'slug' => 'perisai-penghargaan-best-innovation-2024',
+            'category' => 'Prestasi',
+            'content' => '<h2>Prestasi Gemilang PERISAI</h2><p>Dalam kompetisi tingkat nasional, tim PERISAI berhasil meraih penghargaan Best Innovation dengan proyek teknologi yang inovatif dan berdampak sosial tinggi.</p>',
+            'cover_image' => null,
+            'gallery_images' => null,
             'is_published' => true,
             'published_at' => now(),
             'order' => 1,
         ]);
 
         News::create([
-            'title' => 'PRESTASI PERISAI',
-            'description' => 'Pencapaian dan penghargaan yang diraih oleh anggota PERISAI UMI dalam berbagai kompetisi riset dan inovasi tingkat nasional maupun internasional.',
-            'gradient' => 'from-yellow-500 to-yellow-700',
-            'image' => 'images/prestasi.jpg',
-            'category' => 'achievement',
+            'title' => 'Workshop Gratis: Memulai Karir di Industri teknologi',
+            'slug' => 'workshop-karir-industri-teknologi',
+            'category' => 'Kegiatan',
+            'content' => '<h2>Workshop Eksklusif</h2><p>PERISAI mengadakan workshop gratis untuk membantu mahasiswa mempersiapkan karir di industri teknologi dengan narasumber dari perusahaan-perusahaan terkemuka.</p>',
+            'cover_image' => null,
+            'gallery_images' => null,
             'is_published' => true,
-            'published_at' => now(),
+            'published_at' => now()->subDays(5),
             'order' => 2,
+        ]);
+
+        News::create([
+            'title' => 'Program Magang Tersedia di 15 Perusahaan Teknologi',
+            'slug' => 'program-magang-15-perusahaan',
+            'category' => 'Informasi',
+            'content' => '<h2>Kesempatan Magang</h2><p>PERISAI membuka kesempatan magang untuk anggota di berbagai perusahaan teknologi terkemuka dengan benefit yang menarik.</p>',
+            'cover_image' => null,
+            'gallery_images' => null,
+            'is_published' => true,
+            'published_at' => now()->subDays(10),
+            'order' => 3,
         ]);
     }
 }
-

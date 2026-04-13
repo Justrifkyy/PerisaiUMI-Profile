@@ -42,42 +42,46 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-                @for ($i = 1; $i <= 3; $i++)
+                @forelse($news->take(3) as $item)
                 <div class="bg-[#111] border border-gray-800 rounded-2xl overflow-hidden group hover:border-[#FFC107] hover:-translate-y-2 transition-all duration-300 flex flex-col shadow-[0_0_20px_rgba(0,0,0,0.5)]">
                     <div class="relative w-full aspect-square overflow-hidden">
-                        <img src="https://via.placeholder.com/600x600.png?text=Proker+{{$i}}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Proker">
-                        <div class="absolute top-4 left-4 bg-[#FFC107] text-black text-xs font-extrabold px-3 py-1 rounded-md uppercase tracking-wider">Proker</div>
+                        <img src="{{ asset('storage/' . $item->cover_image) }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="{{ $item->title }}">
+                        <div class="absolute top-4 left-4 bg-[#FFC107] text-black text-xs font-extrabold px-3 py-1 rounded-md uppercase tracking-wider">{{ $item->category ?? 'Activity' }}</div>
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-[#FFC107] transition-colors line-clamp-2">Focus Group Discussion (FGD) Vol {{ $i }}</h3>
-                        <p class="text-gray-400 text-sm mb-6 line-clamp-3 flex-grow">Kegiatan diskusi interaktif yang diselenggarakan oleh departemen penalaran untuk membahas isu-isu riset terkini di kalangan mahasiswa.</p>
-                        <a href="{{ route('activity.detailproker') }}" class="inline-block text-center w-full bg-transparent border-2 border-[#FFC107] text-[#FFC107] hover:bg-[#FFC107] hover:text-black font-bold py-2.5 rounded-xl transition-colors">Lihat Detail</a>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-[#FFC107] transition-colors line-clamp-2">{{ $item->title }}</h3>
+                        <p class="text-gray-400 text-sm mb-6 line-clamp-3 flex-grow">{{ Str::limit($item->content, 100) }}</p>
+                        <a href="{{ route('activity.news.detail', $item->slug) }}" class="inline-block text-center w-full bg-transparent border-2 border-[#FFC107] text-[#FFC107] hover:bg-[#FFC107] hover:text-black font-bold py-2.5 rounded-xl transition-colors">Lihat Detail</a>
                     </div>
                 </div>
-                @endfor
+                @empty
+                <p class="text-gray-400 col-span-full text-center py-8">Belum ada aktivitas tersedia.</p>
+                @endforelse
             </div>
         </div>
 
         <div data-aos="fade-up">
             <div class="flex justify-between items-end mb-8 border-b border-gray-800 pb-4">
                 <h2 class="font-bebas text-4xl md:text-5xl text-white tracking-wide">BERITA & <span class="text-[#FFC107]">KEGIATAN</span></h2>
-                <a href="{{ route('activity.news') }}" class="text-[#FFC107] hover:text-white font-bold text-sm transition-colors flex items-center">Lihat Semua <span class="ml-1">→</span></a>
+                <a href="{{ route('activity.index') }}" class="text-[#FFC107] hover:text-white font-bold text-sm transition-colors flex items-center">Lihat Semua <span class="ml-1">→</span></a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-                @for ($i = 1; $i <= 3; $i++)
+                @forelse($news->take(3) as $item)
                 <div class="bg-[#111] border border-gray-800 rounded-2xl overflow-hidden group hover:border-[#FFC107] hover:-translate-y-2 transition-all duration-300 flex flex-col shadow-[0_0_20px_rgba(0,0,0,0.5)]">
                     <div class="relative w-full aspect-square overflow-hidden">
-                        <img src="https://via.placeholder.com/600x600.png?text=Berita+{{$i}}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Berita">
-                        <div class="absolute top-4 left-4 bg-[#FFC107] text-black text-xs font-extrabold px-3 py-1 rounded-md uppercase tracking-wider">Prestasi</div>
+                        <img src="{{ asset('storage/' . $item->cover_image) }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="{{ $item->title }}">
+                        <div class="absolute top-4 left-4 bg-[#FFC107] text-black text-xs font-extrabold px-3 py-1 rounded-md uppercase tracking-wider">{{ $item->category ?? 'News' }}</div>
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-[#FFC107] transition-colors line-clamp-2">Delegasi UMI Raih Juara {{ $i }} Nasional</h3>
-                        <p class="text-gray-400 text-sm mb-6 line-clamp-3 flex-grow">Kabar gembira datang dari tim riset Perisai UMI yang sukses memenangkan ajang lomba karya tulis ilmiah tingkat nasional di Universitas Brawijaya.</p>
-                        <a href="{{ route('activity.detailnews') }}" class="inline-block text-center w-full bg-transparent border-2 border-[#FFC107] text-[#FFC107] hover:bg-[#FFC107] hover:text-black font-bold py-2.5 rounded-xl transition-colors">Lihat Detail</a>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-[#FFC107] transition-colors line-clamp-2">{{ $item->title }}</h3>
+                        <p class="text-gray-400 text-sm mb-6 line-clamp-3 flex-grow">{{ Str::limit($item->content, 100) }}</p>
+                        <a href="{{ route('activity.news.detail', $item->slug) }}" class="inline-block text-center w-full bg-transparent border-2 border-[#FFC107] text-[#FFC107] hover:bg-[#FFC107] hover:text-black font-bold py-2.5 rounded-xl transition-colors">Lihat Detail</a>
                     </div>
                 </div>
-                @endfor
+                @empty
+                <p class="text-gray-400 col-span-full text-center py-8">Belum ada berita tersedia.</p>
+                @endforelse
             </div>
         </div>
 

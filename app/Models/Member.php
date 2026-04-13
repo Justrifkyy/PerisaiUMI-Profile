@@ -31,4 +31,14 @@ class Member extends Model
     {
         return $this->belongsTo(Department::class);
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
+
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('order');
+    }
 }

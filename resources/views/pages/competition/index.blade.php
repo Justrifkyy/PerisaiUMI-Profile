@@ -68,39 +68,44 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">
             
-            @for ($i = 1; $i <= 8; $i++)
-            <div class="bg-[#111] border border-gray-800 rounded-2xl overflow-hidden group hover:border-[#FFC107] hover:-translate-y-2 transition-all duration-300 flex flex-col shadow-[0_0_20px_rgba(0,0,0,0.5)]" data-aos="zoom-in" data-aos-delay="{{ $i * 50 }}">
+            @forelse($competitions as $competition)
+            <div class="bg-[#111] border border-gray-800 rounded-2xl overflow-hidden group hover:border-[#FFC107] hover:-translate-y-2 transition-all duration-300 flex flex-col shadow-[0_0_20px_rgba(0,0,0,0.5)]" data-aos="zoom-in">
                 
                 <div class="relative w-full aspect-square overflow-hidden border-b border-gray-800">
-                    <img src="https://via.placeholder.com/600x600.png?text=Poster+Lomba+{{ $i }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Poster Lomba">
+                    @if($competition->poster_images && count($competition->poster_images) > 0)
+                        <img src="{{ asset('storage/' . $competition->poster_images[0]) }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="{{ $competition->title }}">
+                    @else
+                        <img src="https://via.placeholder.com/600x600.png?text=Poster+Lomba" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="{{ $competition->title }}">
+                    @endif
                     
-                    @if($i % 3 == 0)
+                    @php
+                        $isUpcoming = $competition->deadline->isFuture();
+                        $deadlineText = $competition->deadline->locale('id')->format('d M Y');
+                    @endphp
+                    @if($isUpcoming)
                         <div class="absolute top-4 left-4 bg-green-500/90 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-lg tracking-wider">Pendaftaran Buka!</div>
                     @else
-                        <div class="absolute top-4 left-4 bg-red-500/90 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-lg tracking-wider">Deadline: 25 Nov 2026</div>
+                        <div class="absolute top-4 left-4 bg-red-500/90 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-lg tracking-wider">Deadline: {{ $deadlineText }}</div>
                     @endif
                 </div>
 
                 <div class="p-5 flex flex-col flex-grow">
-                    <h3 class="text-white font-bold text-lg mb-2 leading-tight group-hover:text-[#FFC107] transition-colors line-clamp-2">Lomba Esai Mahasiswa Nasional (LEMNAS) Vol {{ $i }}</h3>
-                    <p class="text-gray-400 text-sm line-clamp-3 mb-6 flex-grow">Universitas Gadjah Mada mengadakan lomba esai tingkat nasional dengan tema "Transisi Energi Era Digital". Total hadiah puluhan juta rupiah!</p>
+                    <h3 class="text-white font-bold text-lg mb-2 leading-tight group-hover:text-[#FFC107] transition-colors line-clamp-2">{{ $competition->title }}</h3>
+                    <p class="text-gray-400 text-sm line-clamp-3 mb-6 flex-grow">{{ Str::limit($competition->description, 100) }}</p>
                     
-                    <a href="{{ route('competition.show') }}" class="inline-block text-center w-full bg-transparent border-2 border-[#FFC107] text-[#FFC107] hover:bg-[#FFC107] hover:text-black font-bold py-2.5 rounded-xl transition-colors">
+                    <a href="{{ route('competition.detail', $competition->slug) }}" class="inline-block text-center w-full bg-transparent border-2 border-[#FFC107] text-[#FFC107] hover:bg-[#FFC107] hover:text-black font-bold py-2.5 rounded-xl transition-colors">
                         Lihat Detail
                     </a>
                 </div>
             </div>
-            @endfor
+            @empty
+            <p class="text-gray-400 col-span-full text-center py-8">Belum ada kompetisi tersedia.</p>
+            @endforelse
             
         </div>
 
-        <div class="flex justify-center items-center space-x-2" data-aos="fade-up">
-            <a href="#" class="px-4 py-2 bg-[#111] text-gray-400 border border-gray-800 rounded-lg hover:text-[#FFC107] hover:border-[#FFC107] transition font-semibold">Prev</a>
-            <a href="#" class="px-4 py-2 bg-[#FFC107] text-black font-extrabold border border-[#FFC107] rounded-lg">1</a>
-            <a href="#" class="px-4 py-2 bg-[#111] text-gray-400 border border-gray-800 rounded-lg hover:text-[#FFC107] hover:border-[#FFC107] transition font-semibold">2</a>
-            <a href="#" class="px-4 py-2 bg-[#111] text-gray-400 border border-gray-800 rounded-lg hover:text-[#FFC107] hover:border-[#FFC107] transition font-semibold">3</a>
-            <span class="px-2 text-gray-500">...</span>
-            <a href="#" class="px-4 py-2 bg-[#111] text-gray-400 border border-gray-800 rounded-lg hover:text-[#FFC107] hover:border-[#FFC107] transition font-semibold">Next</a>
+        <div class="mt-8">
+            {{ $competitions->links() }}
         </div>
 
     </div>

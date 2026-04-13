@@ -11,15 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('departments', function (Blueprint $table) {
+        Schema::create('galleries', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // e.g., "PSDM", "KOMPRES", "HUMAS"
-            $table->string('full_name')->nullable(); // Full department name
+            $table->string('title')->nullable();
             $table->text('description')->nullable();
-            $table->string('icon')->nullable(); // Icon or image path
+            $table->string('image_path');
+            $table->string('category')->nullable();
             $table->integer('order')->default(0);
             $table->boolean('is_active')->default(true);
+            $table->boolean('is_featured')->default(false);
+            $table->timestamp('taken_at')->nullable();
             $table->timestamps();
+
+            $table->index('category');
+            $table->index('is_active');
+            $table->index('order');
         });
     }
 
@@ -28,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('departments');
+        Schema::dropIfExists('galleries');
     }
 };
