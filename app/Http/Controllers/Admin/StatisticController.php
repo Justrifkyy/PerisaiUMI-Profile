@@ -8,63 +8,73 @@ use Illuminate\Http\Request;
 
 class StatisticController extends Controller
 {
+    /**
+     * Display all statistics
+     */
     public function index()
     {
-        $statistics = Statistic::ordered()->paginate(10);
-        return view('admin.statistics.index', compact('statistics')); // Path diperbarui
+        $statistics = Statistic::orderBy('order')->paginate(10);
+        return view('admin.statistics.index', compact('statistics'));
     }
 
+    /**
+     * Show form to create new statistic
+     */
     public function create()
     {
-        return view('admin.statistics.create'); // Path diperbarui
+        return view('admin.statistics.create');
     }
 
+    /**
+     * Store new statistic
+     */
     public function store(Request $request)
     {
         $validated = $request->validate([
             'label' => 'required|string|max:255',
-            'period' => 'nullable|string|max:255',
-            'number' => 'required|integer',
-            'bg_class' => 'nullable|string|max:255',
-            'text_class' => 'nullable|string|max:255',
+            'value' => 'required|string|max:255',
+            'description' => 'nullable|string',
             'order' => 'nullable|integer',
-            'is_active' => 'boolean',
+            'is_active' => 'nullable|boolean',
         ]);
 
         Statistic::create($validated);
 
-        return redirect()->route('admin.statistics.index')
-            ->with('success', 'Statistic created successfully!');
+        return redirect()->route('admin.statistics.index')->with('success', 'Statistik berhasil ditambahkan');
     }
 
+    /**
+     * Show form to edit statistic
+     */
     public function edit(Statistic $statistic)
     {
-        return view('admin.statistics.edit', compact('statistic')); // Path diperbarui
+        return view('admin.statistics.edit', compact('statistic'));
     }
 
+    /**
+     * Update statistic
+     */
     public function update(Request $request, Statistic $statistic)
     {
         $validated = $request->validate([
             'label' => 'required|string|max:255',
-            'period' => 'nullable|string|max:255',
-            'number' => 'required|integer',
-            'bg_class' => 'nullable|string|max:255',
-            'text_class' => 'nullable|string|max:255',
+            'value' => 'required|string|max:255',
+            'description' => 'nullable|string',
             'order' => 'nullable|integer',
-            'is_active' => 'boolean',
+            'is_active' => 'nullable|boolean',
         ]);
 
         $statistic->update($validated);
 
-        return redirect()->route('admin.statistics.index')
-            ->with('success', 'Statistic updated successfully!');
+        return redirect()->route('admin.statistics.index')->with('success', 'Statistik berhasil diperbarui');
     }
 
+    /**
+     * Delete statistic
+     */
     public function destroy(Statistic $statistic)
     {
         $statistic->delete();
-
-        return redirect()->route('admin.statistics.index')
-            ->with('success', 'Statistic deleted successfully!');
+        return redirect()->route('admin.statistics.index')->with('success', 'Statistik berhasil dihapus');
     }
 }

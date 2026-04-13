@@ -16,6 +16,11 @@ use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\DepartmentMemberController;
 use App\Http\Controllers\Admin\StatisticController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\WebSettingController;
+use App\Http\Controllers\Admin\MemberController;
+use App\Http\Controllers\Admin\WorkProgramController;
+use App\Http\Controllers\Admin\CompetitionController;
+use App\Http\Controllers\Admin\InboxMessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -127,6 +132,27 @@ Route::prefix('admin')
 
         // Statistics Management
         Route::resource('statistics', StatisticController::class);
+
+        // Web Settings Management (only 1 row)
+        Route::get('/web-settings', [WebSettingController::class, 'index'])->name('web-settings.index');
+        Route::put('/web-settings', [WebSettingController::class, 'update'])->name('web-settings.update');
+
+        // Members Management (Standalone)
+        Route::resource('members', MemberController::class);
+
+        // Work Programs Management
+        Route::resource('work-programs', WorkProgramController::class);
+
+        // Competitions Management
+        Route::resource('competitions', CompetitionController::class);
+
+        // Inbox Messages Management
+        Route::get('/inbox', [InboxMessageController::class, 'index'])->name('inbox.index');
+        Route::get('/inbox/{message}', [InboxMessageController::class, 'show'])->name('inbox.show');
+        Route::put('/inbox/{message}/mark-as-read', [InboxMessageController::class, 'markAsRead'])->name('inbox.mark-as-read');
+        Route::put('/inbox/{message}/mark-as-unread', [InboxMessageController::class, 'markAsUnread'])->name('inbox.mark-as-unread');
+        Route::delete('/inbox/{message}', [InboxMessageController::class, 'destroy'])->name('inbox.destroy');
+        Route::post('/inbox/destroy-multiple', [InboxMessageController::class, 'destroyMultiple'])->name('inbox.destroy-multiple');
 
         // Gallery Management
         Route::resource('gallery', GalleryController::class)->except(['create', 'edit', 'update']);

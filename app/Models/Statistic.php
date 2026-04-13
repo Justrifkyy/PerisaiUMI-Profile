@@ -6,19 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Statistic extends Model
 {
+    protected $table = 'statistics';
+
     protected $fillable = [
         'label',
-        'period',
-        'number',
-        'bg_class',
-        'text_class',
+        'value',
+        'description',
         'order',
         'is_active',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
-        'number' => 'integer',
     ];
 
     public function scopeActive($query)
