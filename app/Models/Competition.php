@@ -25,4 +25,14 @@ class Competition extends Model
         'is_active' => 'boolean',
         'deadline' => 'date',
     ];
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
+
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('order');
+    }
 }

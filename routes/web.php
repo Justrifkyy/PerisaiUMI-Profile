@@ -19,8 +19,13 @@ use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\WebSettingController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\WorkProgramController;
-use App\Http\Controllers\Admin\CompetitionController;
+use App\Http\Controllers\Admin\CompetitionController as AdminCompetitionController;
 use App\Http\Controllers\Admin\InboxMessageController;
+
+// --- FRONTEND CONTROLLERS (Additional) ---
+use App\Http\Controllers\Frontend\AboutController;
+use App\Http\Controllers\Frontend\ActivityController;
+use App\Http\Controllers\Frontend\CompetitionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,56 +44,30 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::prefix('about')
     ->name('about.')
     ->group(function () {
-        Route::get('/sejarah', function () {
-            return view('pages.about.sejarah');
-        })->name('sejarah');
-        Route::get('/visi-misi', function () {
-            return view('pages.about.visi-misi');
-        })->name('visi-misi');
-        Route::get('/bagan', function () {
-            return view('pages.about.bagan');
-        })->name('bagan');
-
-        // Sumber Daya & Detail Departemen
-        Route::get('/sumberdaya', function () {
-            return view('pages.about.sumberdaya.index');
-        })->name('sumberdaya');
-        Route::get('/sumberdaya/departemen/detail', function () {
-            return view('pages.about.sumberdaya.detaildepartemen');
-        })->name('departemen.detail');
+        Route::get('/sejarah', [AboutController::class, 'sejarah'])->name('sejarah');
+        Route::get('/visi-misi', [AboutController::class, 'visiMisi'])->name('visi-misi');
+        Route::get('/struktur', [AboutController::class, 'struktur'])->name('struktur');
+        Route::get('/bagan', [AboutController::class, 'bagan'])->name('bagan');
+        Route::get('/sumberdaya', [AboutController::class, 'sumberDaya'])->name('sumberdaya');
+        Route::get('/departemen/{slug}', [AboutController::class, 'departemenDetail'])->name('departemen.detail');
     });
 
 // Activity Routes
 Route::prefix('activity')
     ->name('activity.')
     ->group(function () {
-        Route::get('/', function () {
-            return view('pages.activity.index');
-        })->name('index');
-        Route::get('/proker', function () {
-            return view('pages.activity.proker');
-        })->name('proker');
-        Route::get('/news', function () {
-            return view('pages.activity.news');
-        })->name('news');
-        Route::get('/proker/detail', function () {
-            return view('pages.activity.detailproker');
-        })->name('detailproker');
-        Route::get('/news/detail', function () {
-            return view('pages.activity.detailnews');
-        })->name('detailnews');
+        Route::get('/', [ActivityController::class, 'index'])->name('index');
+        Route::get('/proker', [ActivityController::class, 'proker'])->name('proker');
+        Route::get('/proker/{slug}', [ActivityController::class, 'detailProker'])->name('proker.detail');
+        Route::get('/news/{slug}', [ActivityController::class, 'detailNews'])->name('news.detail');
     });
 
 // Competition Routes
 Route::prefix('competition')
     ->name('competition.')
     ->group(function () {
-        Route::get('/', function () {
-            return view('pages.competition.index');
-        })->name('index');
-        Route::get('/detail', function () {
-            return view('pages.competition.show');
-        })->name('show');
+        Route::get('/', [CompetitionController::class, 'index'])->name('index');
+        Route::get('/{slug}', [CompetitionController::class, 'detail'])->name('detail');
     });
 
 // Contact Routes
@@ -144,7 +123,7 @@ Route::prefix('admin')
         Route::resource('work-programs', WorkProgramController::class);
 
         // Competitions Management
-        Route::resource('competitions', CompetitionController::class);
+        Route::resource('competitions', AdminCompetitionController::class);
 
         // Inbox Messages Management
         Route::get('/inbox', [InboxMessageController::class, 'index'])->name('inbox.index');

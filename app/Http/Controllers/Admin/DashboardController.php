@@ -19,30 +19,37 @@ class DashboardController extends Controller
         $stats = [
             'news_count' => News::count(),
             'department_count' => Department::count(),
+            'member_count' => \App\Models\Member::count(),
+            'work_program_count' => \App\Models\WorkProgram::count(),
+            'competition_count' => \App\Models\Competition::count(),
+            'message_count' => \App\Models\InboxMessage::where('is_read', false)->count(),
             'statistic_count' => Statistic::count(),
         ];
 
-        // Get statistics data similar to landing page
-        $statistics = Statistic::all();
+        // Get statistics data for dashboard display
+        $statistics = Statistic::active()->ordered()->get();
 
-        // Prepare stat boxes data matching landing page format
+        // Prepare stat boxes data
         $statBoxes = [];
-        foreach ($statistics as $stat) {
+        $colors = [
+            'bg-blue-600',
+            'bg-purple-600',
+            'bg-pink-600',
+            'bg-indigo-600',
+            'bg-green-600',
+            'bg-red-600',
+            'bg-yellow-600'
+        ];
+
+        foreach ($statistics as $index => $stat) {
             $statBoxes[] = [
-                'label' => strtoupper($stat->label),
-                'period' => $stat->period,
-                'number' => $stat->number, // <-- Diperbaiki dari $stat->value menjadi $stat->number
-                'bgClass' => $stat->bg_class ?? 'bg-zinc-800',
-                'textClass' => $stat->text_class ?? 'text-gray-400',
-                'periodClass' => $stat->period_class ?? 'text-gray-300',
-                'numberClass' => $stat->number_class ?? 'text-yellow-400',
-                'linkClass' => $stat->link_class ?? 'text-yellow-400 hover:text-yellow-500',
-                'borderClass' => $stat->border_class ?? 'border-gray-700',
-                'shadowClass' => $stat->shadow_class ?? 'hover:shadow-yellow-400/20',
+                'label' => $stat->label,
+                'value' => $stat->value,
+                'description' => $stat->description,
+                'bgClass' => $colors[$index % count($colors)] ?? 'bg-blue-600',
             ];
         }
 
-        // Path view diperbarui
         return view('admin.dashboard', compact('stats', 'statBoxes'));
     }
 }

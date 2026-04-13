@@ -14,24 +14,64 @@ class DepartmentSeeder extends Seeder
     public function run(): void
     {
         $departments = [
-            ['name' => 'PSDM', 'full_name' => 'Pengembangan Sumber Daya Manusia', 'order' => 1],
-            ['name' => 'KOMPRES', 'full_name' => 'Kompetisi dan Prestasi', 'order' => 2],
-            ['name' => 'HUMAS', 'full_name' => 'Hubungan Masyarakat', 'order' => 3],
-            ['name' => 'RISTEK', 'full_name' => 'Riset dan Teknologi', 'order' => 4],
-            ['name' => 'PENALARAN', 'full_name' => 'Penalaran dan Karya Ilmiah', 'order' => 5],
-            ['name' => 'MEDIA', 'full_name' => 'Media dan Informasi', 'order' => 6],
+            [
+                'name' => 'PSDM',
+                'slug' => 'psdm',
+                'description' => 'Departemen Pengembangan Sumber Daya Manusia fokus pada pengembangan kapasitas anggota.',
+                'vision' => 'Menjadi departemen terdepan dalam pengembangan SDM',
+                'mission' => 'Memberikan pelatihan dan workshop berkelanjutan untuk meningkatkan kompetensi anggota',
+                'order' => 1,
+                'is_active' => true,
+            ],
+            [
+                'name' => 'KOMPRES',
+                'slug' => 'kompres',
+                'description' => 'Departemen Kompetisi dan Prestasi mengorganisir kompetisi dan meraih prestasi.',
+                'vision' => 'Menjadi inkubator prestasi mahasiswa berkualitas',
+                'mission' => 'Memfasilitasi peserta untuk berkompetisi di tingkat nasional dan internasional',
+                'order' => 2,
+                'is_active' => true,
+            ],
+            [
+                'name' => 'HUMAS',
+                'slug' => 'humas',
+                'description' => 'Departemen Hubungan Masyarakat mengelola komunikasi eksternal.',
+                'vision' => 'Membangun reputasi positif dan kemitraan strategis',
+                'mission' => 'Menjalin hubungan baik dengan stakeholder internal dan eksternal',
+                'order' => 3,
+                'is_active' => true,
+            ],
+            [
+                'name' => 'RISTEK',
+                'slug' => 'ristek',
+                'description' => 'Departemen Riset dan Teknologi fokus pada inovasi dan penelitian.',
+                'vision' => 'Menghasilkan inovasi teknologi yang berdampak sosial',
+                'mission' => 'Mendorong penelitian dan pengembangan teknologi terdepan',
+                'order' => 4,
+                'is_active' => true,
+            ],
+            [
+                'name' => 'PENALARAN',
+                'slug' => 'penalaran',
+                'description' => 'Departemen Penalaran dan Karya Ilmiah mengembangkan kemampuan akademik.',
+                'vision' => 'Menjadi pusat pengembangan karya ilmiah berkualitas',
+                'mission' => 'Membimbing penulisan karya ilmiah dan penelitian akademik',
+                'order' => 5,
+                'is_active' => true,
+            ],
+            [
+                'name' => 'MEDIA',
+                'slug' => 'media',
+                'description' => 'Departemen Media dan Informasi mengelola komunikasi internal dan konten digital.',
+                'vision' => 'Menjadi media informasi terpercaya dan berkualitas',
+                'mission' => 'Menghasilkan konten berkualitas tinggi dan komunikasi efektif',
+                'order' => 6,
+                'is_active' => true,
+            ],
         ];
 
         foreach ($departments as $dept) {
-            Department::create([
-                'name' => $dept['name'],
-                'full_name' => $dept['full_name'],
-                'description' => null,
-                'icon' => null,
-                'order' => $dept['order'],
-                'is_active' => true,
-            ]);
+            Department::create($dept);
         }
     }
 }
-
