@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\StatisticController;
+use App\Http\Controllers\Admin\InboxMessageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +14,9 @@ Route::get('/news/{id}', [NewsController::class, 'show']);
 Route::get('/statistics', [StatisticController::class, 'index']);
 Route::get('/departments', [DepartmentController::class, 'index']);
 Route::get('/departments/{id}', [DepartmentController::class, 'show']);
+
+// Contact form submission
+Route::post('/contact/send', [InboxMessageController::class, 'store'])->name('api.contact.send');
 
 // Auth routes
 Route::post('/login', [AuthController::class, 'login']);
@@ -36,4 +40,3 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/departments/{id}', [DepartmentController::class, 'update']);
     Route::delete('/departments/{id}', [DepartmentController::class, 'destroy']);
 });
-

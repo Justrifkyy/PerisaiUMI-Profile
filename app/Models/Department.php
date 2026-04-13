@@ -7,11 +7,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Department extends Model
 {
+    protected $table = 'departments';
+
     protected $fillable = [
         'name',
-        'full_name',
+        'slug',
         'description',
-        'icon',
+        'vision',
+        'mission',
+        'group_photo',
         'order',
         'is_active',
     ];
@@ -20,9 +24,20 @@ class Department extends Model
         'is_active' => 'boolean',
     ];
 
-    public function organizationalStructures(): HasMany
+    /**
+     * Get the members that belong to this department
+     */
+    public function members(): HasMany
     {
-        return $this->hasMany(OrganizationalStructure::class);
+        return $this->hasMany(Member::class);
+    }
+
+    /**
+     * Get the work programs that belong to this department
+     */
+    public function workPrograms(): HasMany
+    {
+        return $this->hasMany(WorkProgram::class);
     }
 
     public function scopeActive($query)
