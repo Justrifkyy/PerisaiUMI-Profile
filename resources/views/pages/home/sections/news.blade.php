@@ -11,12 +11,12 @@
         <div class="news-grid">
             @forelse($latestNews as $news)
                 <div class="news-card reveal reveal-delay-{{ $loop->iteration }}">
-                    <img src="{{ asset('storage/' . $news->image) }}" alt="{{ $news->title }}" loading="lazy">
+                    <img src="{{ asset('storage/' . $news->cover_image) }}" alt="{{ $news->title }}" loading="lazy">
                     <div class="news-overlay"></div>
                     <div class="news-content">
                         <div class="news-cat">{{ $news->category ?? 'Berita' }}</div>
                         <h3 class="news-title">{{ $news->title }}</h3>
-                        <p class="news-desc">{{ $news->description }}</p>
+                        <p class="news-desc">{{ Str::limit($news->content, 80) }}</p>
                     </div>
                 </div>
             @empty

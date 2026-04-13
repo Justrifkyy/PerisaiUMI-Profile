@@ -25,27 +25,25 @@
     <div class="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 xl:px-24 pt-8">
         
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
-            @for ($i = 1; $i <= 6; $i++)
+            @forelse($workPrograms as $program)
             <div class="bg-[#111] border border-gray-800 rounded-2xl overflow-hidden group hover:border-[#FFC107] hover:-translate-y-2 transition-all duration-300 flex flex-col shadow-[0_0_20px_rgba(0,0,0,0.5)]">
                 <div class="relative w-full aspect-square overflow-hidden">
-                    <img src="https://via.placeholder.com/600x600.png?text=Proker+{{$i}}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Proker">
-                    <div class="absolute top-4 left-4 bg-[#FFC107] text-black text-xs font-extrabold px-3 py-1 rounded-md uppercase tracking-wider">Proker</div>
+                    <img src="{{ asset('storage/' . $program->cover_image) }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="{{ $program->title }}">
+                    <div class="absolute top-4 left-4 bg-[#FFC107] text-black text-xs font-extrabold px-3 py-1 rounded-md uppercase tracking-wider">{{ $program->department->name ?? 'Proker' }}</div>
                 </div>
                 <div class="p-6 flex flex-col flex-grow">
-                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-[#FFC107] transition-colors line-clamp-2">Nama Program Kerja {{ $i }}</h3>
-                    <p class="text-gray-400 text-sm mb-6 line-clamp-3 flex-grow">Deskripsi singkat mengenai program kerja ini. Penjelasan tujuan dan hasil yang diharapkan dari pelaksanaan kegiatan ini.</p>
-                    <a href="{{ route('activity.detailproker') }}" class="inline-block text-center w-full bg-transparent border-2 border-[#FFC107] text-[#FFC107] hover:bg-[#FFC107] hover:text-black font-bold py-2.5 rounded-xl transition-colors">Lihat Detail</a>
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-[#FFC107] transition-colors line-clamp-2">{{ $program->title }}</h3>
+                    <p class="text-gray-400 text-sm mb-6 line-clamp-3 flex-grow">{{ Str::limit($program->description, 100) }}</p>
+                    <a href="{{ route('activity.detail-proker', $program->slug) }}" class="inline-block text-center w-full bg-transparent border-2 border-[#FFC107] text-[#FFC107] hover:bg-[#FFC107] hover:text-black font-bold py-2.5 rounded-xl transition-colors">Lihat Detail</a>
                 </div>
             </div>
-            @endfor
+            @empty
+            <p class="text-gray-400 col-span-full text-center py-8">Belum ada program kerja tersedia.</p>
+            @endforelse
         </div>
 
-        <div class="flex justify-center items-center space-x-2">
-            <a href="#" class="px-4 py-2 bg-[#111] text-gray-400 border border-gray-800 rounded-lg hover:text-[#FFC107] hover:border-[#FFC107] transition">Prev</a>
-            <a href="#" class="px-4 py-2 bg-[#FFC107] text-black font-bold border border-[#FFC107] rounded-lg">1</a>
-            <a href="#" class="px-4 py-2 bg-[#111] text-gray-400 border border-gray-800 rounded-lg hover:text-[#FFC107] hover:border-[#FFC107] transition">2</a>
-            <a href="#" class="px-4 py-2 bg-[#111] text-gray-400 border border-gray-800 rounded-lg hover:text-[#FFC107] hover:border-[#FFC107] transition">3</a>
-            <a href="#" class="px-4 py-2 bg-[#111] text-gray-400 border border-gray-800 rounded-lg hover:text-[#FFC107] hover:border-[#FFC107] transition">Next</a>
+        <div class="mt-8">
+            {{ $workPrograms->links() }}
         </div>
 
     </div>

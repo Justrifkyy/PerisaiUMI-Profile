@@ -52,7 +52,7 @@ class AboutController extends Controller
         $kadep = Member::where('hierarchy', 'kadep')->active()->ordered()->with('department')->get();
         $staf = Member::where('hierarchy', 'staf')->active()->ordered()->with('department')->get();
 
-        return view('pages.about.sumberdaya', compact('pembina', 'inti', 'kadep', 'staf'));
+        return view('pages.about.sumberdaya.index', compact('pembina', 'inti', 'kadep', 'staf'));
     }
 
     public function departemenDetail($slug = null)

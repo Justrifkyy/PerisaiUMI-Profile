@@ -57,21 +57,21 @@
                         <div class="w-12 h-12 bg-[#111] border border-[#333] rounded-full flex items-center justify-center text-[#FFC107] text-xl mr-5 shadow-[0_0_15px_rgba(255,193,7,0.1)]">📧</div>
                         <div>
                             <h4 class="text-white font-bold text-lg mb-1">Email</h4>
-                            <p class="text-gray-400">perisaiumi.umi.ac.id <br> <span class="text-sm opacity-60">(Estimasi balasan 1x24 jam)</span></p>
+                            <p class="text-gray-400">{{ $settings->email ?? 'Belum diatur' }} <br> <span class="text-sm opacity-60">(Estimasi balasan 1x24 jam)</span></p>
                         </div>
                     </div>
                     <div class="flex items-start">
                         <div class="w-12 h-12 bg-[#111] border border-[#333] rounded-full flex items-center justify-center text-[#FFC107] text-xl mr-5 shadow-[0_0_15px_rgba(255,193,7,0.1)]">📞</div>
                         <div>
                             <h4 class="text-white font-bold text-lg mb-1">Phone / WhatsApp</h4>
-                            <p class="text-gray-400">+62 8958 0079 4794</p>
+                            <p class="text-gray-400">{{ $settings->phone ?? 'Belum diatur' }}</p>
                         </div>
                     </div>
                     <div class="flex items-start">
                         <div class="w-12 h-12 bg-[#111] border border-[#333] rounded-full flex items-center justify-center text-[#FFC107] text-xl mr-5 shadow-[0_0_15px_rgba(255,193,7,0.1)]">📍</div>
                         <div>
                             <h4 class="text-white font-bold text-lg mb-1">Alamat Kesekretariatan</h4>
-                            <p class="text-gray-400 leading-relaxed">Jl. Urip Sumoharjo KM.5, Panaikang Kec. Panakkukang,<br>Kota Makassar, Sulawesi Selatan 90231</p>
+                            <p class="text-gray-400 leading-relaxed">{{ $settings->address ?? 'Belum diatur' }}</p>
                         </div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
             <div class="bg-[#0a0a0a]/80 backdrop-blur-xl p-8 md:p-10 rounded-3xl border border-gray-800 shadow-[0_20px_50px_rgba(0,0,0,0.5)]" data-aos="fade-left">
                 <h3 class="text-2xl font-bold text-[#FFC107] mb-6">Kirim Pesan Langsung</h3>
                 
-                <form action="#" method="POST" class="space-y-5">
+                <form action="{{ route('contact.send') }}" method="POST" class="space-y-5">
                     @csrf
                     <div>
                         <label class="block text-gray-400 text-sm font-semibold mb-2">Nama Lengkap / Instansi</label>
